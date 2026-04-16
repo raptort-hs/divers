@@ -1,43 +1,75 @@
 # 05 — Roadmap
 
-## Phase 0 — Setup (en cours)
+## Phase 0 — Setup ✅
 
-- [x] Structure documentaire initiale (`README.md`, `CLAUDE.md`, `docs/01` à `docs/06`).
+- [x] Structure documentaire initiale (`README.md`, `CLAUDE.md`, `docs/01` à `docs/07`).
 - [x] Import du pitch v1.
-- [x] Personas & parcours utilisateurs v1 (`07-personas.md` — 3 talents + 3 clients).
-- [ ] Validation des personas avec l'utilisateur (ajustements éventuels).
-- [ ] Définition du périmètre MVP (mise à jour de ce fichier).
+- [x] Personas & parcours utilisateurs v1 (3 talents + 3 clients).
+- [x] Périmètre MVP cadré (5 questions tranchées).
 
-## Phase 1 — MVP (en cours de cadrage)
+## Phase 1 — MVP
 
-**Cible client MVP confirmée** : C1 — Sophie / dirigeante de PME (20-50 personnes).
+### Cadrage verrouillé (2026-04-16)
 
-À définir (4 questions restantes) :
-- Priorité talent : juniors (T1/T3) ou seniors (T2) ou les deux ?
-- Missions à impact : MVP ou Phase 2 ?
-- Tokens & gouvernance : MVP ou Phase 2 ?
-- Géographie de lancement : FR seul, ou FR+BE+CH ?
+- **Client MVP** : C1 — Sophie, dirigeante de PME 20-50 pers.
+- **Talents MVP** : mix juniors + seniors (T1, T2, T3) activés dès le lancement.
+- **Missions à impact** : ❌ pas au MVP → Phase 2.
+- **Tokens** : MVP minimal (compteur interne off-chain, attribution post-mission, pas de gouvernance on-chain).
+- **Géographie** : France seule.
 
-Une fois tranchés :
-- Quels modules ship en premier (parmi les 6) ?
-- Indicateurs de succès (activation client PME, première mission, NPS, GMV).
+### Scope modules — proposition v1 à valider
 
-## Phase 2 — Extension (à définir)
+| # | Module | MVP ? | Périmètre MVP proposé |
+|---|--------|-------|------------------------|
+| 1 | Profil augmenté | ✅ | CV dynamique, compétences, dispo, valeurs. Badges basiques. Pas de niveaux gamifiés. |
+| 2 | Matching intelligent | ✅ | Reco de missions pour talents + reco de profils pour PME. Algo simple (mots-clés + valeurs + budget) au début, IA en itération. |
+| 3 | Marketplace missions | ✅ | Missions rémunérées uniquement (pas de missions tokens/impact). Filtres : domaine, durée, budget. |
+| 4 | Espace mission collaboratif | ✅ partiel | Timeline + checklists + chat humain. **Copilote IA basique** (rédaction brief, aide candidature, synthèse livrables). Pas de génération code/contenu avancée. |
+| 5 | Feedback & progression | ✅ partiel | Évaluations croisées talent ↔ client. **Pas** de badges/XP/micro-formations au MVP (Phase 2). |
+| 6 | Tokens & gouvernance | ✅ minimal | Compteur tokens off-chain attribués après mission réussie. Affichage dans profil. **Pas** de gouvernance, pas de votes, pas d'échange. |
 
-- Intégration copilote IA profonde.
-- Système de tokens & gouvernance.
-- Missions à impact.
+### Modules / fonctions transverses MVP
 
-## Phase 3 — Scale (à définir)
+- Inscription + KYC simplifié (FR).
+- Paiement sécurisé (escrow via prestataire type Stripe Connect / Lemonway).
+- Facturation automatisée talent ↔ PME.
+- Contractualisation simple (template contrat freelance, signature électronique).
+- Dashboard PME (missions en cours, historique).
+- Dashboard talent (missions, revenus, tokens, feedbacks).
 
-- Internationalisation (Europe).
-- Grands comptes.
-- Projets sponsorisés RSE.
+### Indicateurs de succès MVP (à discuter)
+
+- **Activation client** : X PME inscrites et ayant déposé ≥ 1 besoin dans les 3 premiers mois.
+- **Matching efficace** : > 60 % des besoins reçoivent ≥ 3 candidatures qualifiées en < 72h.
+- **Première mission** : > 40 % des besoins aboutissent à une mission signée.
+- **NPS** : NPS client > 40, NPS talent > 30.
+- **GMV** : X € de volume de transactions sur 6 mois post-lancement.
+
+*Chiffres précis à caler après discussion.*
+
+## Phase 2 — Extension
+
+- Copilote IA profond (génération code / contenu / plans, intégrations IDE).
+- Gamification complète (badges, niveaux, XP, micro-formations).
+- Missions à impact + clients C2 (grands groupes) + C3 (ONG).
+- Tokens on-chain + gouvernance (votes, redistribution).
+- Abonnements premium (talents & entreprises).
+
+## Phase 3 — Scale
+
+- Internationalisation : BE, CH, puis Europe.
+- Projets sponsorisés RSE à grande échelle.
+- Pools freelances pour grands comptes.
 
 ## Backlog (idées parking)
 
-*Rien pour l'instant — à alimenter au fil des sessions.*
+- Système d'apprentissage par pairs (mentoring entre freelances).
+- Marketplace de templates de mission.
+- Insights sectoriels (benchmarks tarifs, tendances compétences).
 
 ## Prochaine action
 
-**Valider / amender les personas v1** avec l'utilisateur, puis trancher les 5 questions ouvertes listées en fin de `07-personas.md` (priorité talents juniors vs seniors, cible client MVP, missions à impact, tokens, géographie). Une fois validé, passer à l'étape 2 : définition précise du MVP dans ce fichier.
+**Valider le scope modules MVP proposé** (tableau ci-dessus) avec l'utilisateur. Ajuster si besoin. Ensuite :
+- Définir le tunnel d'onboarding PME (parcours step-by-step).
+- Chiffrer les indicateurs de succès.
+- Passer à l'étape 3 (Architecture technique) → création `docs/tech/01-architecture.md` en anglais.

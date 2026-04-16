@@ -141,12 +141,12 @@ Livraison  →  Feedback croisé  →  Rémunération (€ + tokens)  →  Nouve
 
 ---
 
-## Questions ouvertes (à trancher)
+## Questions ouvertes (toutes tranchées — 2026-04-16)
 
-1. **Priorité talent** : faut-il cibler d'abord les juniors (T1/T3) ou les seniors (T2) pour le MVP ?
-2. ~~**Priorité client** : PME (C1) comme cible MVP~~ → **Tranché 2026-04-16 : C1 (Sophie / PME) est la cible MVP confirmée.**
-3. **Missions à impact** : module dès le MVP ou en Phase 2 ?
-4. **Tokens** : ship dès le MVP (même basique) ou Phase 2 pour éviter la complexité réglementaire ?
-5. **Géographie MVP** : France uniquement ? France + Belgique + Suisse ?
+1. ~~**Priorité talent** : juniors ou seniors ?~~ → **Les deux** : T1/T2/T3 actifs dès le MVP (mix juniors + seniors pour couvrir tous les besoins PME).
+2. ~~**Priorité client**~~ → **C1 (Sophie / PME)** cible MVP confirmée.
+3. ~~**Missions à impact**~~ → **Phase 2**. Au MVP, on reste sur le flux PME classique.
+4. ~~**Tokens**~~ → **MVP minimal** : compteur interne off-chain attribué après mission, pas de gouvernance on-chain, convertible plus tard.
+5. ~~**Géographie MVP**~~ → **France seule**. Simplification juridique/fiscale/paiements.
 
-Ces questions seront tranchées lors de la session **Roadmap & MVP** (étape 2 de la séquence de travail).
+**→ Périmètre MVP verrouillé. Passage au scope module par module dans `05-roadmap.md`.**

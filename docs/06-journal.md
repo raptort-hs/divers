@@ -5,6 +5,33 @@ Les entrées les plus récentes en haut.
 
 ---
 
+## 2026-04-16 — Cadrage MVP verrouillé + scope modules proposé
+
+**Fait**
+- 4 décisions tranchées verrouillant le périmètre MVP :
+  - Talents MVP : **mix juniors + seniors** (T1/T2/T3 dès le lancement).
+  - Missions à impact : **Phase 2** (pas au MVP).
+  - Tokens : **MVP minimal** (compteur off-chain, sans gouvernance on-chain).
+  - Géographie : **France seule**.
+- Questions ouvertes toutes barrées dans `07-personas.md`.
+- `05-roadmap.md` réécrit : Phase 0 close, Phase 1 détaillée avec tableau scope modules (6 modules mappés MVP / partiel / minimal), modules transverses listés, indicateurs de succès ébauchés.
+- Phase 2 enrichie (copilote profond, gamification, missions impact, tokens on-chain, abonnements premium).
+
+**Décisions prises**
+- Scope modules MVP proposé (à valider) : modules 1-2-3 complets, module 4 partiel (copilote IA basique), module 5 partiel (évaluations sans gamification), module 6 minimal (compteur tokens).
+- Modules transverses MVP : KYC, paiement escrow, facturation, contrat, dashboards.
+
+**Reste à faire**
+- Validation du tableau scope modules par l'utilisateur.
+- Chiffrer les indicateurs de succès (PME cibles, GMV, NPS).
+- Définir le tunnel onboarding PME.
+- Attaquer ensuite l'étape 3 : architecture technique (`docs/tech/01-architecture.md`, en anglais).
+
+**Prochaine action**
+Présenter le scope modules MVP à l'utilisateur pour validation/ajustements.
+
+---
+
 ## 2026-04-16 — Décision : PME = cible client MVP
 
 **Fait**
