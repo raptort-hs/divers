@@ -5,6 +5,32 @@ Les entrées les plus récentes en haut.
 
 ---
 
+## 2026-04-16 — Onboarding PME v1 (flow détaillé)
+
+**Fait**
+- Création du sous-dossier `docs/flows/` pour accueillir les parcours détaillés.
+- Rédaction `docs/flows/onboarding-pme.md` : tunnel step-by-step (Landing → Signup → Qualif besoin → Profil express → Matching → Espace mission → KYC).
+- Principes directeurs : friction minimale jusqu'au matching, copilote IA à chaque étape de rédaction, progressive disclosure, transparence commission 10 %.
+- Cible d'activation : **time-to-matching < 15 min**.
+- Vue données minimale (User, Company, Need, MatchingProposal, MissionSpace) — à formaliser proprement en `docs/tech/` plus tard.
+- 5 questions ouvertes identifiées : captcha, modération PME, langue copilote, prestataire paiement, stratégie anti-bypass.
+- Mise à jour `README.md` et `CLAUDE.md` : ajout de l'arborescence `flows/`.
+
+**Décisions prises**
+- Architecture docs : dossier `flows/` pour chaque parcours métier (plutôt que d'alourdir les docs numérotées).
+- Flow onboarding PME : 6 étapes, ~15 min total, KYC repoussé au moment du 1er paiement (pas bloquant à l'onboarding).
+
+**Reste à faire**
+- Validation du flow PME + trancher ses 5 questions ouvertes.
+- Définir les autres flows : onboarding talent, exécution mission, feedback.
+- Chiffrer KPIs MVP.
+- Attaquer l'architecture technique.
+
+**Prochaine action**
+Recueillir le feedback utilisateur sur `docs/flows/onboarding-pme.md` + trancher les 5 questions ouvertes.
+
+---
+
 ## 2026-04-16 — Scope modules MVP validé (6/6)
 
 **Fait**

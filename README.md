@@ -15,6 +15,8 @@ Toute la mémoire du projet vit dans `docs/`. Chaque avancée est tracée et mis
 - [`docs/05-roadmap.md`](docs/05-roadmap.md) — Phases & priorités.
 - [`docs/06-journal.md`](docs/06-journal.md) — Historique daté des décisions et avancées.
 - [`docs/07-personas.md`](docs/07-personas.md) — Personas & parcours utilisateurs.
+- [`docs/flows/`](docs/flows/) — Parcours utilisateurs détaillés.
+  - [`onboarding-pme.md`](docs/flows/onboarding-pme.md) — Tunnel onboarding PME (cible MVP).
 
 À venir :
 - `docs/08-pitch-investisseurs.md` — One-pager & deck.

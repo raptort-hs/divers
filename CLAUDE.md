@@ -71,5 +71,7 @@ Décrire en 1 ligne la toute prochaine action.
     ├── 06-journal.md
     ├── 07-personas.md
     ├── 08-pitch-investisseurs.md   (à venir)
+    ├── flows/                       # parcours utilisateurs détaillés
+    │   └── onboarding-pme.md
     └── tech/                        (à venir, en anglais)
 ```

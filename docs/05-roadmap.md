@@ -69,7 +69,9 @@
 
 ## Prochaine action
 
-Scope modules MVP validé (6 modules, cf. tableau). À traiter ensuite :
-- Définir le tunnel d'onboarding PME (parcours step-by-step).
-- Chiffrer les indicateurs de succès (cibles PME, GMV, NPS).
+Scope modules MVP validé. Onboarding PME v1 rédigé (`docs/flows/onboarding-pme.md`).
+À traiter ensuite :
+- Validation de l'onboarding PME par l'utilisateur + trancher les 5 questions ouvertes du flow.
+- Définir les autres flows clés (onboarding talent, dépôt besoin détaillé, exécution mission, feedback).
+- Chiffrer les indicateurs de succès MVP (cibles PME, GMV, NPS).
 - Passer à l'étape 3 (Architecture technique) → création `docs/tech/01-architecture.md` en anglais.
