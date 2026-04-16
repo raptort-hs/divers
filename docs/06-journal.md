@@ -1,0 +1,26 @@
+# 06 — Journal
+
+Historique daté de toutes les avancées, décisions, changements d'orientation.
+Les entrées les plus récentes en haut.
+
+---
+
+## 2026-04-16 — Initialisation du projet Symbiose
+
+**Fait**
+- Création de la structure documentaire : `README.md`, `CLAUDE.md`, `docs/01-vision.md` à `docs/06-journal.md`.
+- Import du pitch v1 fourni par l'utilisateur, réparti dans 4 docs thématiques (vision, proposition de valeur, produit, business model).
+- Squelette de roadmap avec Phase 0 (setup) cochée et Phases 1-3 à définir.
+- Contrat mémoire (`CLAUDE.md`) : règles de mise à jour continue des `.md`, stratégie linguistique mixte (français produit / anglais technique), règles de commit.
+
+**Décisions prises**
+- Structure `docs/` numérotée (01 à 08+), langues mixtes FR/EN.
+- Séquence de travail : Personas → Roadmap/MVP → Architecture technique → Pitch investisseurs.
+- Branche de travail : `claude/review-shared-link-wubTi`.
+
+**Reste à faire**
+- Rédiger `docs/07-personas.md` (premier jet).
+- Affiner Phase 1 (MVP) sur la base des personas validés.
+
+**Prochaine action**
+Créer `docs/07-personas.md` avec 4-5 personas initiaux (talents + entreprises) et un user journey par persona, à valider avec l'utilisateur.
