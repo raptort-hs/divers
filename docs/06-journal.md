@@ -5,6 +5,25 @@ Les entrées les plus récentes en haut.
 
 ---
 
+## 2026-04-16 — Scope modules MVP validé (6/6)
+
+**Fait**
+- Validation du scope modules MVP par l'utilisateur : les 6 modules sont actés au MVP (incluant module 6 Tokens en version minimal off-chain).
+- Tableau scope marqué « validé » dans `05-roadmap.md`.
+
+**Décisions prises**
+- Aucun module retiré du MVP. On conserve Profil, Matching, Marketplace, Espace mission+copilote, Feedback, Tokens — chacun au périmètre défini dans le tableau.
+
+**Reste à faire**
+- Tunnel onboarding PME (parcours step-by-step).
+- Chiffrage indicateurs de succès MVP.
+- Démarrer étape 3 : architecture technique (`docs/tech/01-architecture.md`, anglais).
+
+**Prochaine action**
+Demander à l'utilisateur sur quoi enchaîner : onboarding PME, chiffrage KPIs, ou architecture technique.
+
+---
+
 ## 2026-04-16 — Cadrage MVP verrouillé + scope modules proposé
 
 **Fait**

@@ -17,7 +17,7 @@
 - **Tokens** : MVP minimal (compteur interne off-chain, attribution post-mission, pas de gouvernance on-chain).
 - **Géographie** : France seule.
 
-### Scope modules — proposition v1 à valider
+### Scope modules — validé 2026-04-16
 
 | # | Module | MVP ? | Périmètre MVP proposé |
 |---|--------|-------|------------------------|
@@ -69,7 +69,7 @@
 
 ## Prochaine action
 
-**Valider le scope modules MVP proposé** (tableau ci-dessus) avec l'utilisateur. Ajuster si besoin. Ensuite :
+Scope modules MVP validé (6 modules, cf. tableau). À traiter ensuite :
 - Définir le tunnel d'onboarding PME (parcours step-by-step).
-- Chiffrer les indicateurs de succès.
+- Chiffrer les indicateurs de succès (cibles PME, GMV, NPS).
 - Passer à l'étape 3 (Architecture technique) → création `docs/tech/01-architecture.md` en anglais.
