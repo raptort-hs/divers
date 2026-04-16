@@ -5,6 +5,26 @@ Les entrées les plus récentes en haut.
 
 ---
 
+## 2026-04-16 — Personas & parcours v1
+
+**Fait**
+- Création de `docs/07-personas.md` : 3 personas talents (Léa junior, Marc senior, Amine étudiant) + 3 personas clients (Sophie PME, Julien grand groupe, Fatou ONG).
+- Parcours type (user journey) talent + client détaillés.
+- 5 questions ouvertes identifiées pour trancher avant définition MVP (priorité juniors/seniors, cible client MVP, missions impact, tokens, géographie).
+- Mise à jour `05-roadmap.md` : Phase 0 presque close, prochaine action = validation personas + trancher les 5 questions.
+
+**Décisions prises**
+- Structure personas : 3 talents + 3 clients couvrant le spectre (junior/senior/étudiant × PME/grand compte/ONG).
+
+**Reste à faire**
+- Validation/amendement des personas par l'utilisateur.
+- Trancher les 5 questions ouvertes → passage à l'étape 2 (MVP).
+
+**Prochaine action**
+Attendre le retour de l'utilisateur sur les personas : quels profils garder/retirer/ajouter, et réponses aux 5 questions ouvertes.
+
+---
+
 ## 2026-04-16 — Initialisation du projet Symbiose
 
 **Fait**
