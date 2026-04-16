@@ -5,6 +5,24 @@ Les entrées les plus récentes en haut.
 
 ---
 
+## 2026-04-16 — Décision : PME = cible client MVP
+
+**Fait**
+- Validation de C1 (Sophie / dirigeante de PME 20-50 pers.) comme cible client prioritaire pour le MVP.
+- Marquage « CIBLE MVP » dans `07-personas.md`, question 2 des questions ouvertes tranchée.
+- Roadmap Phase 1 mise à jour : cible client actée, 4 questions restantes à trancher.
+
+**Décisions prises**
+- **Cible MVP = PME (C1)**. Les grand groupes (C2) et ONG (C3) restent en Phase 2+.
+
+**Reste à faire**
+- Trancher les 4 questions restantes : priorité talent, missions impact, tokens, géographie.
+
+**Prochaine action**
+Poser les 4 questions restantes à l'utilisateur pour verrouiller le périmètre MVP.
+
+---
+
 ## 2026-04-16 — Personas & parcours v1
 
 **Fait**

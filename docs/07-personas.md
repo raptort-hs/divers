@@ -57,7 +57,7 @@ Objectif : identifier les profils cibles de Symbiose et tracer leur parcours typ
 
 ## Personas Clients
 
-### C1 — Sophie, la dirigeante de PME (20-50 personnes)
+### C1 — Sophie, la dirigeante de PME (20-50 personnes) — **CIBLE MVP**
 
 - **Âge** : 45 ans
 - **Profil** : co-fondatrice d'une PME SaaS B2B, 30 salariés.
@@ -144,7 +144,7 @@ Livraison  →  Feedback croisé  →  Rémunération (€ + tokens)  →  Nouve
 ## Questions ouvertes (à trancher)
 
 1. **Priorité talent** : faut-il cibler d'abord les juniors (T1/T3) ou les seniors (T2) pour le MVP ?
-2. **Priorité client** : PME (C1) comme cible MVP semble évident — à confirmer.
+2. ~~**Priorité client** : PME (C1) comme cible MVP~~ → **Tranché 2026-04-16 : C1 (Sophie / PME) est la cible MVP confirmée.**
 3. **Missions à impact** : module dès le MVP ou en Phase 2 ?
 4. **Tokens** : ship dès le MVP (même basique) ou Phase 2 pour éviter la complexité réglementaire ?
 5. **Géographie MVP** : France uniquement ? France + Belgique + Suisse ?

@@ -8,12 +8,19 @@
 - [ ] Validation des personas avec l'utilisateur (ajustements éventuels).
 - [ ] Définition du périmètre MVP (mise à jour de ce fichier).
 
-## Phase 1 — MVP (à définir)
+## Phase 1 — MVP (en cours de cadrage)
 
-Critères à déterminer après validation des personas :
+**Cible client MVP confirmée** : C1 — Sophie / dirigeante de PME (20-50 personnes).
+
+À définir (4 questions restantes) :
+- Priorité talent : juniors (T1/T3) ou seniors (T2) ou les deux ?
+- Missions à impact : MVP ou Phase 2 ?
+- Tokens & gouvernance : MVP ou Phase 2 ?
+- Géographie de lancement : FR seul, ou FR+BE+CH ?
+
+Une fois tranchés :
 - Quels modules ship en premier (parmi les 6) ?
-- Pour quel persona cible prioritaire ?
-- Quels indicateurs de succès (activation, première mission, NPS) ?
+- Indicateurs de succès (activation client PME, première mission, NPS, GMV).
 
 ## Phase 2 — Extension (à définir)
 
