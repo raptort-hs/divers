@@ -5,6 +5,43 @@ Les entrées les plus récentes en haut.
 
 ---
 
+## 2026-04-17 — Skill Manifest : 7 décisions techniques actées, 3 questions produit restantes
+
+**Fait**
+- Revue des 10 questions ouvertes du Skill Manifest (`docs/tech/02-skill-format.md` §9).
+- Tri : 7 questions techniques tranchées directement (arbitrage pris par l'agent, l'utilisateur s'en fout de ce niveau de détail) ; 3 vraies questions produit/business conservées pour décision utilisateur.
+- Réécriture de la section §9 : ancienne « Open questions » remplacée par « Resolved decisions (v1 — technical) » avec rationale pour chaque décision.
+- Nouvelle section §10 « Open product questions » qui isole les 3 questions à trancher côté utilisateur.
+- Mise à jour des exemples YAML du doc pour refléter les décisions :
+  - Convention `@handle/slug` appliquée aux skills community et external (§7.2, §7.3).
+  - `description` passé en format i18n `{fr, en}` pour `short`, `long`, `intended_for`, `non_goals` (§3.1).
+  - Ajout du champ `runtime.offline: false` dans l'exemple complet (§3.1).
+  - Ajout du champ `handle` dans `author` pour community et external.
+- Renumérotation : ancienne §10 « Next steps » devient §11.
+
+**Décisions prises (techniques, v1)**
+- **9.1** `id` namespacing hybride : natives en slug plat (`audit-ux-express`), community en `@<handle>/<slug>`, external/imported en `@<source-handle>/<slug>`. Convention familière (npm, GitHub packages).
+- **9.2** `description` i18n-structuré dès v1 : `{fr, en}` sur `short`, `long`, `intended_for`, `non_goals`. Au moins `fr` requis. Évite un retrofit cassant plus tard.
+- **9.3** Résolution de dépendances côté Symbiose : resolver type npm (plus haute version semver-compatible), pas côté Matching Agent. Conflit major → le Matching Agent arbitre.
+- **9.4** Flag `runtime.offline` ajouté au manifest v1 (levier commercial futur pour régulés — défense, finance, santé).
+- **9.5** CLI `symbiose skill lint` **reporté Phase 2**. Au MVP : Safety-Review Agent + JSON-Schema suffisent. CLI pertinent quand des dev externes packageront des skills hors plateforme.
+- **9.6** Granularité MCP→skill : **1 skill par capacité cohérente**, pas par tool. Un serveur MCP avec `read_ga` + `send_slack` = 2 skills. Les skills sont matchés sur des intents talents, pas sur des surfaces API.
+- **9.7** Fichiers `examples/` utilisés à la fois par le Matching Agent (retrieval few-shot + scoring) et le Mission Copilot (démonstrations runtime). Format structuré YAML `{input, expected_output, commentary}`.
+
+**Reste à faire**
+- Trancher les 3 questions produit restantes (§10) :
+  1. Pricing tokens static vs dynamic.
+  2. Revenue split pour skills importés non revendiqués (recommandation : payout rétroactif 90j à la revendication).
+  3. Seuils de certification bronze/silver/gold exacts.
+- Geler le JSON-Schema → `docs/tech/schemas/skill.schema.json`.
+- Rédiger la spec Matching Agent v1 → `docs/tech/03-matching-agent.md`.
+- Identifier les 5 premiers skills natifs MVP.
+
+**Prochaine action**
+Poser les 3 questions produit restantes à l'utilisateur et les acter dans le manifest.
+
+---
+
 ## 2026-04-17 — Skill Manifest v1 (`docs/tech/02-skill-format.md`)
 
 **Fait**
