@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Symbiose — l'outil des prestataires augmentés{% endblock %}
+{% block content %}
+<section class="max-w-3xl">
+  <h1 class="text-4xl font-bold tracking-tight">L'environnement que chaque prestataire mérite.</h1>
+  <p class="mt-4 text-lg text-slate-600">
+    Tu arrives sur une mission, Symbiose te construit en direct l'environnement adapté :
+    copilote IA mission-aware, skill set activé, workspace, plan d'action auto.
+  </p>
+
+  <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="p-4 bg-white rounded-xl border border-slate-200">
+      <div class="text-xs font-semibold text-violet-700 uppercase tracking-wide">1.</div>
+      <div class="font-semibold mt-1">Brief-Parser Agent</div>
+      <p class="text-sm text-slate-600 mt-1">Ton brief en langage naturel → structure exploitable.</p>
+    </div>
+    <div class="p-4 bg-white rounded-xl border border-slate-200">
+      <div class="text-xs font-semibold text-violet-700 uppercase tracking-wide">2.</div>
+      <div class="font-semibold mt-1">Matching Agent</div>
+      <p class="text-sm text-slate-600 mt-1">Sélectionne 3-7 skills justifiés, dans ton budget tokens.</p>
+    </div>
+    <div class="p-4 bg-white rounded-xl border border-slate-200">
+      <div class="text-xs font-semibold text-violet-700 uppercase tracking-wide">3.</div>
+      <div class="font-semibold mt-1">Mission Copilot</div>
+      <p class="text-sm text-slate-600 mt-1">Exécute les skills, drafte les livrables, t'accompagne.</p>
+    </div>
+  </div>
+
+  <div class="mt-10">
+    <a href="/onboarding" class="inline-block bg-violet-700 hover:bg-violet-800 text-white font-semibold px-6 py-3 rounded-lg">
+      Lancer un brief de démo →
+    </a>
+    <a href="/skills" class="ml-2 inline-block text-violet-700 hover:text-violet-900 font-semibold px-6 py-3">
+      Voir les skills disponibles
+    </a>
+  </div>
+</section>
+{% endblock %}

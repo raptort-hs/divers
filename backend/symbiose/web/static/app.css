@@ -1,0 +1,3 @@
+/* Base overrides if ever Tailwind CDN is blocked. Intentionally minimal. */
+body { line-height: 1.5; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }

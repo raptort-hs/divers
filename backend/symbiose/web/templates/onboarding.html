@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Nouveau brief — Symbiose{% endblock %}
+{% block content %}
+<section class="max-w-2xl">
+  <h1 class="text-2xl font-bold tracking-tight">Décris ton besoin en quelques lignes</h1>
+  <p class="mt-2 text-slate-600 text-sm">
+    Le Brief-Parser Agent structure automatiquement ta demande. Pas besoin de remplir un cahier des charges.
+  </p>
+
+  <form method="post" action="/onboarding" class="mt-6 space-y-4">
+    <div>
+      <label class="block text-sm font-medium text-slate-700 mb-1">Brief libre</label>
+      <textarea name="raw_brief" rows="6" required
+        class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500"
+        placeholder="Ex : boutique Shopify qui convertit mal sur mobile, budget 5000€, besoin d'un audit UX sous 10 jours avec rapport et plan d'action."></textarea>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1">Budget (€, optionnel)</label>
+        <input type="number" name="budget_eur" min="0"
+          class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500">
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-1">Délai (jours, optionnel)</label>
+        <input type="number" name="deadline_days" min="0"
+          class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-violet-500">
+      </div>
+    </div>
+
+    <button type="submit" class="bg-violet-700 hover:bg-violet-800 text-white font-semibold px-6 py-3 rounded-lg">
+      Envoyer au Brief-Parser →
+    </button>
+  </form>
+</section>
+{% endblock %}

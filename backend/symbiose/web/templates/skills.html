@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Skills — Symbiose{% endblock %}
+{% block content %}
+<section>
+  <h1 class="text-2xl font-bold tracking-tight">Registre skills</h1>
+  <p class="text-sm text-slate-600 mt-1">{{ skills | length }} skill(s) indexé(s). Natifs, communautaires, externes.</p>
+
+  <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+    {% for s in skills %}
+      <article class="p-5 bg-white rounded-xl border border-slate-200">
+        <div class="flex items-start justify-between">
+          <div>
+            <h2 class="font-semibold">{{ s.name }}</h2>
+            <div class="font-mono text-xs text-slate-500">{{ s.id }} <span class="text-slate-400">v{{ s.version }}</span></div>
+          </div>
+          {% if s.certification_level %}
+            <span class="px-2 py-0.5 rounded-full text-xs font-semibold
+              {% if s.certification_level == 'gold' %}bg-yellow-200 text-yellow-900
+              {% elif s.certification_level == 'silver' %}bg-slate-200 text-slate-700
+              {% else %}bg-amber-100 text-amber-800{% endif %}">{{ s.certification_level }}</span>
+          {% endif %}
+        </div>
+        <p class="text-sm text-slate-600 mt-2">{{ s.short_description }}</p>
+        <div class="mt-3 flex flex-wrap gap-2 text-xs">
+          {% for d in s.domains %}
+            <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full">{{ d }}</span>
+          {% endfor %}
+          {% for p in s.mission_phases %}
+            <span class="bg-violet-50 text-violet-800 px-2 py-0.5 rounded-full">{{ p }}</span>
+          {% endfor %}
+        </div>
+        <div class="mt-3 text-xs text-slate-500 flex justify-between">
+          <span>{{ s.price_tokens }} tokens</span>
+          <span>{% if s.offline %}offline ✓{% else %}online{% endif %}</span>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

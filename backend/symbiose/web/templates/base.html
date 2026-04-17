@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Symbiose{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/sse.js"></script>
+  <link rel="stylesheet" href="/static/app.css">
+  <style>
+    :root { --accent: #5b21b6; }
+    body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen">
+  <header class="bg-white border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="font-bold text-lg tracking-tight">Symbiose <span class="text-xs text-slate-400 font-normal">MVP</span></a>
+      <nav class="space-x-4 text-sm">
+        <a href="/onboarding" class="text-slate-600 hover:text-slate-900">Démarrer un brief</a>
+        <a href="/skills" class="text-slate-600 hover:text-slate-900">Skills</a>
+        <a href="/docs" class="text-slate-600 hover:text-slate-900" target="_blank">API</a>
+      </nav>
+    </div>
+  </header>
+  <main class="max-w-5xl mx-auto px-6 py-10">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="max-w-5xl mx-auto px-6 py-8 text-xs text-slate-400 border-t border-slate-200 mt-16">
+    Symbiose MVP — orchestration d'agents + écosystème de skills. Démo locale.
+  </footer>
+</body>
+</html>

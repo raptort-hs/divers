@@ -43,12 +43,12 @@ _PARSED: dict[str, dict] = {}  # need_id -> parsed brief dict
 
 @app.get("/", response_class=HTMLResponse)
 async def landing(request: Request):
-    return templates.TemplateResponse("landing.html", {"request": request})
+    return templates.TemplateResponse(request, "landing.html")
 
 
 @app.get("/onboarding", response_class=HTMLResponse)
 async def onboarding_form(request: Request):
-    return templates.TemplateResponse("onboarding.html", {"request": request})
+    return templates.TemplateResponse(request, "onboarding.html")
 
 
 @app.post("/onboarding", response_class=HTMLResponse)
@@ -99,10 +99,7 @@ async def mission_view(request: Request, mission_id: str):
     mission = _MISSIONS.get(mission_id)
     if not mission:
         raise HTTPException(status_code=404, detail="mission not found")
-    return templates.TemplateResponse("mission.html", {
-        "request": request,
-        "mission": mission,
-    })
+    return templates.TemplateResponse(request, "mission.html", {"mission": mission})
 
 
 @app.post("/mission/{mission_id}/start")
@@ -119,10 +116,7 @@ async def mission_live(request: Request, mission_id: str):
     mission = _MISSIONS.get(mission_id)
     if not mission:
         raise HTTPException(status_code=404, detail="mission not found")
-    return templates.TemplateResponse("mission_live.html", {
-        "request": request,
-        "mission": mission,
-    })
+    return templates.TemplateResponse(request, "mission_live.html", {"mission": mission})
 
 
 @app.get("/mission/{mission_id}/events")
@@ -143,10 +137,7 @@ async def mission_events(mission_id: str):
 @app.get("/skills", response_class=HTMLResponse)
 async def skills_page(request: Request):
     reg = get_registry()
-    return templates.TemplateResponse("skills.html", {
-        "request": request,
-        "skills": reg.summaries(),
-    })
+    return templates.TemplateResponse(request, "skills.html", {"skills": reg.summaries()})
 
 
 # ---- JSON API ---------------------------------------------------------------
