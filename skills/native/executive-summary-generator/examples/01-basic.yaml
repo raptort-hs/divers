@@ -1,0 +1,35 @@
+example_id: exec-summary-basic-01
+version_compat: ">=2.0.0"
+
+input:
+  source_document: "mission_workspace/audits/audit-ux-exemple-boutique.md"
+  audience: "dirigeante PME (non-technique)"
+  decision_required: "Valider le budget refonte du tunnel mobile (15k€)"
+
+expected_output:
+  executive_summary: |
+    # Synthèse — Audit UX exemple-boutique.fr
+
+    **Contexte.** Le taux de conversion mobile stagne à 0,8 % (vs 2,1 % desktop)
+    malgré un trafic équivalent. Audit express commandé le 5 avril.
+
+    **Constats clés**
+    - CTA panier peu visible sur mobile (§3.1) — cause principale d'abandon haut de tunnel.
+    - Frais de livraison révélés en fin de parcours (§3.4) — pic d'abandon panier à 62 %.
+    - Formulaire checkout non balisé (§4.2) — 18 % d'erreurs de saisie.
+
+    **Recommandations priorisées**
+    1. **CTA sticky mobile** — impact haut, effort faible. +2 à 4 pts de conversion attendus. 2 jours front-end.
+    2. **Transparence frais livraison** — impact haut, effort moyen. Réduction -15 % de l'abandon panier. 1 semaine produit + front.
+    3. **Balisage formulaire checkout** — impact moyen, effort faible. -40 % d'erreurs. 1 jour front-end.
+
+    **Décision attendue.** Valider l'enveloppe refonte mobile 15k€, portée sur les 3 chantiers ci-dessus — ROI estimé 4 à 6 mois.
+
+    **Prochaines étapes**
+    - J+3 : brief dev front + maquettes sticky CTA.
+    - J+10 : livraison quick-wins en staging.
+    - J+14 : mise en production + suivi conversion hebdomadaire.
+
+commentary: |
+  Synthèse d'un audit UX de 8 pages en 1 page. Adaptée à une dirigeante non-technique :
+  vocabulaire courant, ROI chiffré, décision claire. Reco ordonnée impact/effort.

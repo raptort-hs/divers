@@ -1,0 +1,79 @@
+example_id: client-deck-basic-01
+version_compat: ">=1.0.0"
+
+input:
+  source_content: "mission_workspace/audits/audit-ux-exemple-boutique.md"
+  audience: "Sophie, dirigeante PME exemple-boutique.fr"
+  angle: "Validation budget refonte mobile 15k€"
+  slide_count_target: 10
+
+expected_output:
+  deck_markdown: |
+    ---
+    theme: default
+    title: Refonte mobile — restitution audit & demande d'arbitrage
+    ---
+
+    # Refonte mobile — restitution & arbitrage
+    Pour : Sophie Martin — 17 avril 2026
+
+    ---
+    # Pourquoi on est là
+    - Conversion mobile à 0,8 % vs 2,1 % desktop (rapport de 1 à 3).
+    - Audit UX express commandé le 5 avril.
+    - Aujourd'hui : restituer + décider du budget refonte.
+
+    ---
+    # Ce qu'on a constaté
+    - CTA panier sous la ligne de flottaison mobile (audit §3.1).
+    - Frais de livraison masqués jusqu'au paiement (§3.4).
+    - Formulaire checkout non balisé (§4.2).
+
+    ---
+    # Pourquoi c'est un enjeu
+    - 62 % d'abandon panier sur mobile.
+    - Manque à gagner estimé : 4 à 6 k€ / mois sur 3 mois glissants.
+
+    ---
+    # Ce qu'on propose
+    1. CTA sticky mobile — 2 jours front.
+    2. Transparence frais livraison — 1 semaine produit + front.
+    3. Balisage formulaire checkout — 1 jour front.
+
+    ---
+    # Comment on fait
+    - Phase 1 (S+1) : maquettes + dev quick-wins.
+    - Phase 2 (S+2) : staging + tests.
+    - Phase 3 (S+3) : mise en production + suivi.
+
+    ---
+    # Combien ça coûte
+    | Poste | Montant |
+    |-------|---------|
+    | Design (Léa, 3j) | 2 400 € |
+    | Dev front (Marc, 6j) | 9 600 € |
+    | Suivi + tests (2j) | 3 000 € |
+    | **Total** | **15 000 €** |
+
+    ---
+    # Quand
+    - J+3 : brief dev + maquettes.
+    - J+10 : livraison quick-wins en staging.
+    - J+14 : mise en production.
+    - J+21 : premier bilan conversion.
+
+    ---
+    # Ce qu'on attend de vous
+    - Valider l'enveloppe 15 k€.
+    - Nommer un référent côté exemple-boutique.fr.
+    - Arbitrer la priorité en cas de conflit produit.
+
+    ---
+    # Prochaines étapes
+    - Sophie : décision budget → 18/04.
+    - Léa : maquettes sticky CTA → 20/04.
+    - Marc : planning détaillé → 20/04.
+
+commentary: |
+  Deck 10 slides, angle validation budget. Chaque slide a un titre-message. Chiffres tous
+  traçables à l'audit source. Slide budget = total + décomposition simple.

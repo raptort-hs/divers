@@ -1,0 +1,111 @@
+manifest_version: "1.0"
+
+id: meeting-notes-to-actions
+name: "Meeting Notes → Actions"
+version: "1.0.3"
+created_at: "2026-02-10T09:00:00Z"
+updated_at: "2026-04-10T11:00:00Z"
+
+author:
+  type: native
+  id: symbiose
+  display_name: "Symbiose Core Team"
+source:
+  kind: native
+  license: "proprietary"
+
+description:
+  short:
+    fr: "Transforme des notes de réunion brutes en compte-rendu structuré + actions assignées."
+    en: "Turns raw meeting notes into a structured minutes + assigned actions."
+  long:
+    fr: |
+      Convertit des notes de réunion (texte libre ou transcript) en un compte-rendu
+      structuré : décisions actées, actions assignées (responsable + échéance), points
+      en suspens, prochaine réunion. Format prêt à envoyer par mail ou à coller dans
+      un outil projet.
+    en: |
+      Converts raw meeting notes (free text or transcript) into structured minutes:
+      decisions taken, assigned actions (owner + deadline), open items, next meeting.
+      Ready to email or paste into a project tool.
+  intended_for:
+    fr: "Tout talent animant ou participant à des réunions client ou équipe."
+    en: "Any talent running or attending client / team meetings."
+  non_goals:
+    fr: "Ne fait pas de transcription audio brute (fournir le transcript déjà textuel)."
+    en: "Does not do raw audio transcription (provide text transcript)."
+
+taxonomy:
+  domains: ["consulting", "project-management", "writing"]
+  sub_domains: ["meetings", "action-tracking"]
+  tags: ["deliverable-ready", "internal", "quick"]
+  seniority_target: ["junior", "confirmed", "senior"]
+  mission_phases: ["discovery", "review", "handover"]
+  languages: ["fr", "en"]
+
+interface:
+  inputs:
+    - name: "raw_notes"
+      type: "string|file:markdown|file:txt"
+      required: true
+      description: "Notes brutes ou transcript textuel"
+    - name: "attendees"
+      type: "array<string>"
+      required: false
+      description: "Liste des participants (nom + rôle si connu)"
+    - name: "meeting_context"
+      type: "string"
+      required: false
+      description: "Contexte : type de réunion, projet, étape"
+  outputs:
+    - name: "minutes"
+      type: "markdown"
+      description: "Compte-rendu structuré"
+    - name: "actions_table"
+      type: "structured:table"
+      description: "Liste des actions (owner, due_date, status)"
+  preconditions: []
+  side_effects: []
+
+tools:
+  web_access: false
+  file_access:
+    read: ["mission_workspace/*"]
+    write: ["mission_workspace/minutes/*"]
+  depends_on_skills: []
+
+runtime:
+  llm:
+    preferred: "claude-sonnet-4-6"
+    tested: ["claude-sonnet-4-6", "claude-haiku-4-5"]
+    min_context_tokens: 20000
+  offline: true
+  estimated_cost_per_run: "€0.05"
+  estimated_latency_p50: "15s"
+  estimated_latency_p95: "40s"
+
+safety:
+  pii_handling: "processes-pii"
+  data_egress: "workspace-only"
+  injection_risk: "low"
+  sandbox_level: "moderate"
+  review_status: "certified-v1"
+  reviewed_by: ["symbiose-safety-review-agent"]
+  reviewed_at: "2026-03-15T10:00:00Z"
+  human_oversight_required: false
+
+governance:
+  certified: true
+  certification_level: "gold"
+  usage_count: 0
+  deprecated: false
+
+economics:
+  price_model: "per-run"
+  price_tokens: 5
+  author_share_pct: 0
+  platform_share_pct: 100
+
+lifecycle:
+  status: "active"
+  published_at: "2026-02-10T09:00:00Z"

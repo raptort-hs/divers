@@ -1,0 +1,117 @@
+manifest_version: "1.0"
+
+id: client-deck-builder
+name: "Client Deck Builder"
+version: "1.1.0"
+created_at: "2026-03-20T09:00:00Z"
+updated_at: "2026-04-15T10:00:00Z"
+
+author:
+  type: native
+  id: symbiose
+  display_name: "Symbiose Core Team"
+source:
+  kind: native
+  license: "proprietary"
+
+description:
+  short:
+    fr: "Construit un deck client 8-12 slides à partir d'un livrable ou d'un brief."
+    en: "Builds an 8-12 slide client deck from a deliverable or brief."
+  long:
+    fr: |
+      À partir d'un contenu source (audit, étude, plan d'action) + d'un angle de pitch,
+      produit un deck client structuré : cover, contexte, problème, solution, plan d'action,
+      budget, timeline, next steps. Output Markdown + source Slidev-compatible.
+    en: |
+      From a source content + pitch angle, produces a structured client deck: cover,
+      context, problem, solution, action plan, budget, timeline, next steps. Markdown +
+      Slidev-compatible source.
+  intended_for:
+    fr: "Talent devant présenter un livrable à un dirigeant client."
+    en: "Talent presenting a deliverable to an executive client."
+  non_goals:
+    fr: "Ne génère pas d'images. Ne remplace pas la relecture du talent."
+    en: "Does not generate images. Does not replace talent review."
+
+taxonomy:
+  domains: ["consulting", "communication", "writing"]
+  sub_domains: ["presentation", "client-facing"]
+  tags: ["deliverable-ready", "client-facing", "presentation"]
+  seniority_target: ["junior", "confirmed", "senior"]
+  mission_phases: ["handover", "review"]
+  languages: ["fr", "en"]
+
+interface:
+  inputs:
+    - name: "source_content"
+      type: "file:markdown"
+      required: true
+      description: "Contenu source (livrable, brief, notes)"
+    - name: "audience"
+      type: "string"
+      required: true
+      description: "Dirigeant, équipe projet, investisseur, etc."
+    - name: "angle"
+      type: "string"
+      required: true
+      description: "Angle de pitch : validation budget, restitution audit, proposition, etc."
+    - name: "slide_count_target"
+      type: "integer"
+      required: false
+      description: "Cible (8-12 par défaut)"
+  outputs:
+    - name: "deck_markdown"
+      type: "markdown"
+      description: "Slides en Markdown (séparateur --- entre slides)"
+    - name: "deck_slidev"
+      type: "file:markdown"
+      description: "Source Slidev prêt à compiler"
+  preconditions:
+    - "source_content readable"
+  side_effects: []
+
+tools:
+  web_access: false
+  file_access:
+    read: ["mission_workspace/*"]
+    write: ["mission_workspace/decks/*"]
+  depends_on_skills:
+    - id: "executive-summary-generator"
+      version: "^2.0.0"
+
+runtime:
+  llm:
+    preferred: "claude-sonnet-4-6"
+    tested: ["claude-opus-4-7", "claude-sonnet-4-6"]
+    min_context_tokens: 40000
+  offline: true
+  estimated_cost_per_run: "€0.25"
+  estimated_latency_p50: "45s"
+  estimated_latency_p95: "90s"
+
+safety:
+  pii_handling: "none"
+  data_egress: "none"
+  injection_risk: "low"
+  sandbox_level: "moderate"
+  review_status: "certified-v1"
+  reviewed_by: ["symbiose-safety-review-agent"]
+  reviewed_at: "2026-04-02T10:00:00Z"
+  human_oversight_required: false
+
+governance:
+  certified: true
+  certification_level: "bronze"
+  usage_count: 0
+  deprecated: false
+
+economics:
+  price_model: "per-run"
+  price_tokens: 25
+  author_share_pct: 0
+  platform_share_pct: 100
+
+lifecycle:
+  status: "active"
+  published_at: "2026-03-20T09:00:00Z"

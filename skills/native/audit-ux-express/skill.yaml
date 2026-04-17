@@ -1,0 +1,126 @@
+manifest_version: "1.0"
+
+id: audit-ux-express
+name: "Audit UX Express"
+version: "1.2.0"
+created_at: "2026-04-10T09:00:00Z"
+updated_at: "2026-04-17T12:00:00Z"
+
+author:
+  type: native
+  id: symbiose
+  display_name: "Symbiose Core Team"
+source:
+  kind: native
+  origin_url: null
+  license: "proprietary"
+
+description:
+  short:
+    fr: "Audit express UX d'un parcours web en 4h, rapport synthétique livrable."
+    en: "Express UX audit of a web flow in 4h, deliverable-ready summary report."
+  long:
+    fr: |
+      Audit UX structuré en 4h : scan heuristique (10 principes Nielsen),
+      3 parcours utilisateurs représentatifs instrumentés, tableau de quick-wins
+      (impact × effort), synthèse exécutive 1 page. Livrable PDF + deck éditable.
+    en: |
+      Structured 4-hour UX audit: 10-heuristic Nielsen scan, 3 instrumented
+      representative user flows, quick-wins table (impact × effort), 1-page
+      executive summary. Deliverable PDF + editable deck.
+  intended_for:
+    fr: "Talent UX (junior à confirmé) sous deadline court."
+    en: "UX-competent talent (junior to confirmed) on tight deadline."
+  non_goals:
+    fr: "Pas un substitut à une étude UX profonde (tests utilisateurs, entretiens). Web uniquement en v1."
+    en: "Not a substitute for deep UX research. Web only in v1."
+
+taxonomy:
+  domains: ["design", "ux", "product"]
+  sub_domains: ["audit", "heuristic-evaluation", "conversion"]
+  tags: ["express", "deliverable-ready", "client-facing", "web-only"]
+  seniority_target: ["junior", "confirmed"]
+  mission_phases: ["discovery", "audit"]
+  languages: ["fr", "en"]
+
+interface:
+  inputs:
+    - name: "target_url"
+      type: "string"
+      required: true
+      description: "URL of the web experience to audit"
+    - name: "business_goal"
+      type: "string"
+      required: true
+      description: "Primary conversion goal"
+    - name: "personas"
+      type: "array<string>"
+      required: false
+      description: "Named user personas to evaluate against"
+  outputs:
+    - name: "audit_report_pdf"
+      type: "file:pdf"
+      description: "Client-ready audit report"
+    - name: "quick_wins_table"
+      type: "structured:table"
+      description: "Prioritized quick-wins (impact × effort)"
+    - name: "executive_summary"
+      type: "markdown"
+      description: "1-page executive summary"
+  preconditions:
+    - "Target URL publicly accessible"
+    - "business_goal validated with the client"
+  side_effects:
+    - "Reads target URL via headless browser"
+    - "Stores screenshots in mission workspace"
+
+tools:
+  mcp_servers:
+    - id: "playwright-mcp"
+      version: ">=0.8.0"
+      scope: ["read-web"]
+  web_access: true
+  file_access:
+    read: ["mission_workspace/*"]
+    write: ["mission_workspace/audits/*"]
+  depends_on_skills: []
+
+runtime:
+  llm:
+    preferred: "claude-opus-4-7"
+    tested: ["claude-opus-4-7", "claude-sonnet-4-6"]
+    min_context_tokens: 60000
+  offline: false
+  estimated_cost_per_run: "€0.80"
+  estimated_latency_p50: "180s"
+  estimated_latency_p95: "420s"
+
+safety:
+  pii_handling: "processes-pii"
+  data_egress: "workspace-only"
+  injection_risk: "low"
+  sandbox_level: "strict"
+  review_status: "certified-v1"
+  reviewed_by: ["symbiose-safety-review-agent"]
+  reviewed_at: "2026-04-15T10:00:00Z"
+  human_oversight_required: false
+  content_warnings: []
+
+governance:
+  certified: true
+  certification_level: "silver"
+  usage_count: 0
+  success_rate: null
+  avg_rating: null
+  disable_rate: null
+  deprecated: false
+
+economics:
+  price_model: "per-run"
+  price_tokens: 50
+  author_share_pct: 0
+  platform_share_pct: 100
+
+lifecycle:
+  status: "active"
+  published_at: "2026-04-10T09:00:00Z"

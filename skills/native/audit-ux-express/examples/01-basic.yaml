@@ -1,0 +1,45 @@
+example_id: audit-ux-express-basic-01
+version_compat: ">=1.0.0"
+
+input:
+  target_url: "https://exemple-boutique.fr"
+  business_goal: "Augmenter le taux de conversion sur le tunnel d'achat mobile"
+  personas:
+    - "Acheteuse récurrente 35-45 ans"
+    - "Nouveau visiteur comparateur"
+
+expected_output:
+  quick_wins_table:
+    - finding: "Le CTA 'Ajouter au panier' est sous la ligne de flottaison mobile"
+      heuristic: "Visibility of system status"
+      impact: "H"
+      effort: "L"
+      recommended_action: "Remonter le CTA en bloc sticky bottom sur mobile"
+      owner_hint: "front-end"
+    - finding: "Frais de livraison annoncés uniquement à l'étape paiement"
+      heuristic: "Match between system and real world"
+      impact: "H"
+      effort: "M"
+      recommended_action: "Afficher une estimation des frais dès la fiche produit"
+      owner_hint: "product + front-end"
+    - finding: "Les champs obligatoires ne sont pas marqués lors de la saisie"
+      heuristic: "Error prevention"
+      impact: "M"
+      effort: "L"
+      recommended_action: "Astérisque + aide inline sur les 7 champs du formulaire"
+      owner_hint: "front-end"
+  executive_summary_excerpt: |
+    ## Audit UX Express — exemple-boutique.fr
+    ### Top 3 quick-wins
+    1. CTA sticky mobile : +2 à 4 pts de conversion attendus.
+    2. Frais de livraison transparents : réduction du taux d'abandon panier.
+    3. Indicateurs de champs obligatoires : diminution des erreurs formulaire.
+    ### Top 3 risques stratégiques
+    - Arborescence catégorie peu scalable au-delà de 200 SKU.
+    - Absence de preuve sociale sur les fiches produits (avis, stock).
+    - Parcours "recherche avancée" introuvable sur mobile.
+
+commentary: |
+  Exemple canonique : tunnel e-commerce FR, 3 flows, 10 findings dont 3 quick-wins immédiats.
+  Sert à la fois de fixture d'eval pour le Matching Agent (scoring de deliverable_fit)
+  et de démo in-context pour le Mission Copilot.

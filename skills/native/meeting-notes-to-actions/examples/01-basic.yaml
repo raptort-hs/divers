@@ -1,0 +1,63 @@
+example_id: meeting-notes-basic-01
+version_compat: ">=1.0.0"
+
+input:
+  raw_notes: |
+    Réunion kickoff projet refonte mobile - 17/04
+    Présents: Sophie (CEO), Marc (tech lead), Léa (UX)
+    Sophie: budget 15k confirmé, délai 6 semaines
+    Marc: on part sur React Native ? attention au temps de setup
+    Léa: j'ai besoin des accès Figma du design system existant, je demande à Paul
+    Sophie: on valide React Native. Marc tu prépares un planning détaillé pour vendredi
+    Léa: je livre les wireframes le 24/04
+    prochain point mardi 22/04 14h
+  attendees:
+    - "Sophie Martin (CEO)"
+    - "Marc Dupont (tech lead)"
+    - "Léa Roux (UX)"
+  meeting_context: "Kickoff projet refonte mobile"
+
+expected_output:
+  minutes: |
+    # CR — Kickoff projet refonte mobile
+    **Date.** 17/04/2026 · **Participants.** Sophie Martin (CEO), Marc Dupont (tech lead), Léa Roux (UX)
+
+    ## Décisions actées
+    - Budget projet validé : 15 000 € (Sophie).
+    - Délai cible : 6 semaines.
+    - Stack mobile : React Native (Sophie, sur proposition Marc).
+
+    ## Actions
+    | # | Action | Responsable | Échéance | Statut |
+    |---|--------|-------------|----------|--------|
+    | 1 | Préparer un planning détaillé du projet | Marc | 2026-04-18 (vendredi) | À faire |
+    | 2 | Livrer les wireframes mobile | Léa | 2026-04-24 | À faire |
+    | 3 | Demander les accès Figma du design system à Paul | Léa | TBD | À faire |
+
+    ## Points en suspens
+    - Attention signalée par Marc : temps de setup React Native à intégrer dans le planning (à clarifier dans le livrable du planning).
+
+    ## Prochaine réunion
+    - Mardi 22/04 à 14h (objectif non précisé, à confirmer).
+
+  actions_table:
+    - id: 1
+      action: "Préparer un planning détaillé du projet"
+      responsable: "Marc Dupont"
+      due: "2026-04-18"
+      status: "À faire"
+    - id: 2
+      action: "Livrer les wireframes mobile"
+      responsable: "Léa Roux"
+      due: "2026-04-24"
+      status: "À faire"
+    - id: 3
+      action: "Demander les accès Figma du design system à Paul"
+      responsable: "Léa Roux"
+      due: "TBD"
+      status: "À faire"
+
+commentary: |
+  Exemple typique FR : kickoff projet, notes courtes, 3 participants, 3 décisions, 3 actions.
+  Décision Sophie sur React Native ≠ action : classée sous Décisions.
+  Due date "vendredi" résolue en date absolue via le contexte (17/04 jeudi → 18/04).

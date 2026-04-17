@@ -1,0 +1,103 @@
+example_id: tech-spec-basic-01
+version_compat: ">=1.0.0"
+
+input:
+  functional_need: |
+    On veut que les visiteurs puissent sauvegarder leur panier sans créer de compte.
+    Ils doivent pouvoir retrouver le panier sur un autre device via un lien envoyé par mail.
+    Le panier expire au bout de 30 jours.
+  tech_constraints:
+    - "Stack existante : Next.js + Shopify API"
+    - "RGPD France"
+  audience: "Dev lead exemple-boutique.fr"
+
+expected_output:
+  tech_spec: |
+    # Spec — Sauvegarde panier sans compte
+    **Audience.** Dev lead exemple-boutique.fr · **Version.** 0.1 · **Date.** 2026-04-17
+
+    ## 1. Objectifs
+    - Permettre la sauvegarde d'un panier sans création de compte.
+    - Permettre la reprise du panier sur un autre device via lien email.
+    - Expirer automatiquement les paniers inactifs à 30 jours.
+
+    ## 2. Périmètre
+    ### IN
+    - Génération d'un token panier opaque côté serveur.
+    - Envoi d'un mail avec lien de reprise.
+    - TTL 30 jours, purge automatique.
+    ### OUT
+    - Création de compte / auth.
+    - Synchronisation cross-device automatique (sans lien).
+    - Paniers partagés entre utilisateurs.
+
+    ## 3. Exigences fonctionnelles
+    | # | Exigence | Critère de validation |
+    |---|----------|------------------------|
+    | F1 | Un visiteur peut demander la sauvegarde de son panier via saisie de son email | Le panier est persisté côté serveur et un mail est envoyé en ≤ 10 s |
+    | F2 | Le lien reçu par mail restaure le panier sur un autre device | Ouverture du lien restaure exactement les items + quantités du panier sauvegardé |
+    | F3 | Un panier sauvegardé expire 30 jours après sa dernière modification | Un cron quotidien purge les paniers dont `updated_at < now() - 30 days` |
+    | F4 | Le visiteur peut demander la suppression de son panier sauvegardé | Requête `DELETE /cart/saved/{token}` supprime l'entrée et envoie un accusé par mail |
+
+    ## 4. Exigences non-fonctionnelles
+    - Performance : génération + envoi mail < 2 s p95.
+    - Disponibilité : alignée sur le reste du site (99,5 %).
+    - Sécurité / RGPD : token 128 bits non-devinable, email hashé (SHA-256) en base, droit à l'oubli via F4.
+    - Accessibilité : le formulaire de saisie email respecte WCAG 2.1 AA (label explicite, erreurs annoncées).
+
+    ## 5. Architecture proposée
+    - Next.js API route `POST /api/cart/save` → Postgres (nouvelle table `saved_cart`) → queue email (Resend).
+    - Lien reprise : `GET /cart/resume/{token}` hydrate le localStorage panier + redirige sur `/cart`.
+    - Job de purge : Vercel Cron quotidien.
+
+    ## 6. API / Interfaces
+    - `POST /api/cart/save` body `{email, cart_items}` → `{token, resume_url}`.
+    - `GET /api/cart/resume/{token}` → `{cart_items}` ou 404.
+    - `DELETE /api/cart/saved/{token}` → 204.
+
+    ## 7. Data model
+    - `saved_cart(token PK, email_hash, items_json, created_at, updated_at)`.
+    - Pas de table de jointure : l'email hashé suffit au MVP.
+
+    ## 8. Sécurité
+    - Rate-limit 5 envois / IP / heure sur `POST /api/cart/save` (anti-abus).
+    - Token opaque 128-bit URL-safe (crypto.randomBytes).
+    - Lien mail single-use : optionnel au MVP, recommandé pour v2.
+
+    ## 9. Plan de tests
+    - Unitaires : génération token, hashing email, purge logic.
+    - Intégration : flux save → email → resume, end-to-end sur staging.
+    - e2e : Playwright sur parcours complet (desktop + mobile).
+
+    ## 10. Estimation
+    | Poste | Effort |
+    |-------|--------|
+    | Migration DB + model | 1 j |
+    | API routes + logique | 2 j |
+    | Intégration Resend + template mail | 1 j |
+    | Front : formulaire + page resume | 2 j |
+    | Tests + QA | 1 j |
+    | **Total** | **~7 j** |
+
+    ## 11. Questions ouvertes
+    - Q1 : prestataire email (Resend confirmé ?) — owner : dev lead.
+    - Q2 : le lien de reprise doit-il être single-use ou multi-use ? — owner : produit.
+    - Q3 : stockage de `items_json` : schema versionné ou libre ? — owner : dev lead.
+
+  open_questions:
+    - id: "Q1"
+      question: "Prestataire email : Resend ou autre ?"
+      owner: "dev lead"
+      priority: "haute"
+    - id: "Q2"
+      question: "Le lien de reprise doit-il être single-use ou multi-use ?"
+      owner: "produit"
+      priority: "moyenne"
+    - id: "Q3"
+      question: "Schema de `items_json` : versionné ou libre ?"
+      owner: "dev lead"
+      priority: "basse"
+
+commentary: |
+  Exemple type : besoin court (3 lignes) transformé en spec 11 sections avec 4 exigences
+  fonctionnelles testables, data model simple, estimation 7j. Open questions explicites.
