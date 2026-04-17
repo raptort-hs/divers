@@ -201,11 +201,11 @@
       "type": "object",
       "properties": {
         "certified":          { "type": "boolean" },
-        "certification_level": { "enum": ["bronze", "silver", "gold", null] },
+        "certification_level": { "type": ["string", "null"], "enum": ["bronze", "silver", "gold", null] },
         "usage_count":        { "type": "integer", "minimum": 0 },
-        "success_rate":       { "type": "number", "minimum": 0, "maximum": 1 },
-        "avg_rating":         { "type": "number", "minimum": 0, "maximum": 5 },
-        "disable_rate":       { "type": "number", "minimum": 0, "maximum": 1 },
+        "success_rate":       { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "avg_rating":         { "type": ["number", "null"], "minimum": 0, "maximum": 5 },
+        "disable_rate":       { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
         "deprecated":         { "type": "boolean" },
         "deprecated_reason":  { "type": ["string", "null"] },
         "replaced_by":        { "type": ["string", "null"] }
