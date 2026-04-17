@@ -81,10 +81,11 @@ Doc `docs/tech/01-agent-architecture.md` créé (EN) avec :
 Doc `08-environnement-prestataire.md` mise à jour (§3, §8, §9) pour refléter l'approche agent-native.
 
 Prochains sous-chantiers prioritaires :
-1. Valider le choix Claude Agent SDK vs alternatives.
-2. **Skill manifest v1** → `docs/tech/02-skill-format.md`.
-3. **Matching Agent spec complète** → `docs/tech/03-matching-agent.md`.
-4. Prototype end-to-end thin slice (1 skill + 3 agents) pour valider la faisabilité.
-5. Prioriser les 5-10 skills natifs MVP.
+1. ✅ **Skill manifest v1** → `docs/tech/02-skill-format.md` (YAML, safety, governance, adapters externes, 3 exemples, 10 questions ouvertes).
+2. **Matching Agent spec complète** → `docs/tech/03-matching-agent.md` (s'appuie sur le skill manifest).
+3. Valider le choix Claude Agent SDK vs alternatives.
+4. Trancher les 10 questions ouvertes du skill manifest (namespacing, i18n, certification thresholds, etc.).
+5. Prioriser les 5 premiers skills natifs MVP.
+6. Prototype end-to-end thin slice (1 skill + Brief-Parser + Matching + Copilot statique) pour valider la faisabilité.
 
 Ensuite : onboarding talent, KPIs MVP, architecture globale.

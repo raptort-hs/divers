@@ -75,5 +75,6 @@ Décrire en 1 ligne la toute prochaine action.
     ├── flows/                       # parcours utilisateurs détaillés
     │   └── onboarding-pme.md
     └── tech/                        # doc technique, en anglais
-        └── 01-agent-architecture.md
+        ├── 01-agent-architecture.md
+        └── 02-skill-format.md
 ```

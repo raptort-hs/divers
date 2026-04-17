@@ -20,10 +20,10 @@ Toute la mémoire du projet vit dans `docs/`. Chaque avancée est tracée et mis
   - [`onboarding-pme.md`](docs/flows/onboarding-pme.md) — Tunnel onboarding PME (cible MVP).
 - [`docs/tech/`](docs/tech/) — Documentation technique (EN).
   - [`01-agent-architecture.md`](docs/tech/01-agent-architecture.md) — Agent-native orchestration + Matching Agent deep dive.
+  - [`02-skill-format.md`](docs/tech/02-skill-format.md) — Skill manifest v1 (YAML, safety, adapters, examples).
 
 À venir :
 - `docs/09-pitch-investisseurs.md` — One-pager & deck.
-- `docs/tech/02-skill-format.md` — Skill manifest standard (v1).
 - `docs/tech/03-matching-agent.md` — Matching Agent specification.
 
 ## Règle d'or

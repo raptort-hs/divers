@@ -5,6 +5,34 @@ Les entrées les plus récentes en haut.
 
 ---
 
+## 2026-04-17 — Skill Manifest v1 (`docs/tech/02-skill-format.md`)
+
+**Fait**
+- Rédaction complète de `docs/tech/02-skill-format.md` (EN) — le contrat unifié de tout skill dans Symbiose, quel que soit l'origine (native, community, imported).
+- Sections : purpose, 8 principes de design, structure YAML annotée complète, field reference normative, politique semver, lifecycle safety & governance, adapters externes (Claude Skill / MCP / GitHub / web), 3 exemples YAML (native, community, MCP importé), séparation skill vs agent vs workflow, 10 questions ouvertes, next steps.
+- Manifest v1 couvre : identity, authorship, provenance, description, taxonomy (filtres Matching Agent), interface I/O, tools & dépendances, runtime compat (LLM, coût, latence), safety profile (PII, injection, sandbox, review status), governance (certification bronze/silver/gold, usage metrics), économie (tokens, author_share), lifecycle, extension fields.
+- Mise à jour README, CLAUDE.md (arborescence), roadmap.
+
+**Décisions prises (proposées, à valider)**
+- Un skill = bundle `skill.yaml` + `system_prompt.md` (+ examples/tools/assets optionnels).
+- Même manifest pour native / community / imported — adapters normalisent les sources externes.
+- Safety obligatoire sur chaque skill, avec règle dure : `injection_risk: high` OU `data_egress: internet` ⇒ sandbox strict + human oversight.
+- Certification par métriques runtime (bronze/silver/gold) — pas de comité fermé.
+- Missions pinent une version exacte ; upgrade = re-run Matching Agent.
+- Skill ≠ agent ≠ workflow : un skill est un bundle capacité, consommé par les agents.
+
+**Reste à faire**
+- Trancher les 10 questions ouvertes (namespacing, i18n, certification thresholds exacts, token pricing dynamique ou non, granularité MCP→skill, etc.).
+- Dériver le JSON-Schema → `docs/tech/schemas/skill.schema.json`.
+- Matching Agent spec v1 → `docs/tech/03-matching-agent.md`.
+- Valider Claude Agent SDK.
+- Identifier les 5 premiers skills natifs MVP.
+
+**Prochaine action**
+Demander à l'utilisateur s'il veut (a) trancher les 10 questions ouvertes du manifest, ou (b) enchaîner direct sur la spec du Matching Agent et revenir aux questions en batch ensuite.
+
+---
+
 ## 2026-04-16 — Orientation AI-native, agent-native : Matching Agent
 
 **Fait**
