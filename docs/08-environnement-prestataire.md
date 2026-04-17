@@ -1,6 +1,6 @@
 # 08 — Environnement prestataire (cœur produit Symbiose)
 
-**Statut : v1 — premier jet à itérer avec l'utilisateur.**
+**Statut : v2 — orientation stratégique écosystème ouvert (2026-04-16).**
 **Priorité : MAJEURE.** C'est ici que se joue la promesse « travail augmenté par IA » et la différenciation vs Malt / Upwork / Fiverr.
 
 ---
@@ -17,56 +17,136 @@ Un freelance qui prend une mission aujourd'hui démarre **toujours de zéro** :
 
 ## 2. La promesse Symbiose
 
-Quand un prestataire accepte une mission, **Symbiose constitue automatiquement son environnement de travail augmenté** :
+Quand un prestataire accepte une mission, **Symbiose constitue automatiquement un environnement de travail augmenté à partir d'un écosystème ouvert de skills** :
 
 - 🎯 **Adapté à la mission** : la plateforme lit le brief, les livrables, l'échéance, le secteur.
-- 🧠 **Complémentaire au profil** : Symbiose analyse les compétences déclarées + historique + valeurs du prestataire, identifie les **gaps** par rapport à la mission, et configure une IA qui **comble exactement ce qui lui manque**.
-- 🧰 **Avec les bons outils** : skills IA spécialisés, templates, documentation, intégrations (code, design, doc, recherche...) selon le domaine.
-- 📋 **Avec un plan d'action auto-généré** : découpage de la mission en étapes, jalons, checklists, livrables intermédiaires.
-- 🪴 **Qui évolue** : à mesure que la mission avance, l'environnement s'ajuste (nouveaux skills débloqués, plan mis à jour).
+- 🧠 **Complémentaire au profil** : Symbiose analyse les compétences + historique + valeurs du prestataire, identifie les **gaps** par rapport à la mission, et **compose une boîte à outils qui comble exactement ce qui lui manque**.
+- 🧰 **Puisée dans un écosystème ouvert** : skills créés par Symbiose, par les talents eux-mêmes, ou **importés depuis internet** (sources externes, open source, communautés).
+- 📋 **Avec un plan d'action auto-généré** : découpage de la mission en étapes, jalons, checklists.
+- 🪴 **Qui évolue** : à mesure que la mission avance, skills et plan s'ajustent.
 
-**En une phrase** : *« Quand tu ouvres une mission Symbiose, tu ouvres un cockpit déjà configuré pour te rendre meilleur sur cette mission précise. »*
+**En une phrase** : *« Chaque mission ouvre un cockpit composé spécifiquement pour toi, à partir de tout ce que l'écosystème mondial a de meilleur. »*
 
-## 3. Composants de l'environnement
+## 3. La force différenciante : le matching profil × mission × skills
 
-### 3.1 Le copilote IA mission-aware
+C'est **LE cœur technique et stratégique** de Symbiose. Trois entités sont vectorisées et confrontées :
+
+```
+     Profil talent          Brief mission           Skills disponibles
+ (compétences, niveau,   (domaine, livrables,      (ce que chaque skill
+   valeurs, historique)    deadline, contexte)       sait faire, pour qui)
+          \                     |                         /
+           \                    |                        /
+            \                   ▼                       /
+             \       ┌─────────────────────┐           /
+              ─────▶ │   Moteur matching   │ ◀────────
+                     │  (embeddings +      │
+                     │   règles métier)    │
+                     └──────────┬──────────┘
+                                ▼
+                  Environnement de mission composé :
+                  - Skills activés (forces + compléments)
+                  - Plan d'action
+                  - Persona IA adaptée
+```
+
+**La valeur = la précision du matching.** Plus le moteur est bon à détecter le gap entre le profil et les exigences de la mission, plus la compensation est fine, plus le talent est efficace.
+
+## 4. Composants de l'environnement
+
+### 4.1 Le copilote IA mission-aware
 
 IA conversationnelle spécialisée, avec :
 - **Contexte mission pré-chargé** : brief, client, livrables, contraintes.
-- **Contexte profil pré-chargé** : ton style, tes forces, tes faiblesses (pas visible au talent, mais guide les suggestions).
-- **Mémoire long terme** sur cette mission (tout ce qui a été dit, fait, décidé).
-- **Persona IA ajustée** : ton formel / informel, rôle (pair / mentor / exécutant) selon le talent.
+- **Contexte profil pré-chargé** : forces, faiblesses (invisibles au talent mais guident les suggestions).
+- **Mémoire long terme** sur cette mission.
+- **Persona IA ajustée** : pair / mentor / exécutant selon le talent.
 
-### 3.2 Le skill set activé
+### 4.2 Le skill set activé (composé depuis l'écosystème)
 
-Skills (outils / prompts / workflows) activés uniquement si pertinents :
-- **Skills de domaine** : dev (review code, debug, génération tests), design (wireframes, user flows, conversions Figma), marketing (SEO, personas, campagnes), juridique (rédaction contrat, veille réglementaire)...
-- **Skills transverses** : rédaction client, estimation chiffrage, planning, synthèse réunion, génération livrables.
-- **Skills complémentaires** : activés spécifiquement pour combler un gap détecté (ex : Léa junior UX → skill « expertise architecture information » activé ; Marc senior dev → pas besoin).
+La plateforme compose une sélection, jamais un catalogue fermé :
+- **Skills forces** : confortent ce que le talent fait déjà bien (accélération).
+- **Skills complémentaires** : comblent les gaps identifiés par le matching.
+- **Skills transverses** : rédaction client, chiffrage, planning, synthèse.
 
-### 3.3 L'espace de travail (workspace)
+Sources des skills (voir section 5) :
+- **Skills natifs Symbiose** (équipe).
+- **Skills communautaires** (créés par d'autres talents de la plateforme).
+- **Skills externes** (importés depuis internet : Claude Skills, MCP, GitHub, marketplaces).
 
-- **Canvas mission** : timeline visuelle des jalons + livrables + statut.
-- **Bibliothèque** : documents du brief, références, livrables en cours, historique messages client.
-- **Chat client intégré** (dans l'espace mission, partagé avec le client).
-- **Zone privée prestataire** : notes, brouillons, expérimentations (non partagées avec le client).
-- **Intégrations au MVP** : upload fichiers + aperçu + versioning basique. Phase 2 : GitHub, Figma, Notion, Gmail.
+### 4.3 L'espace de travail (workspace)
 
-### 3.4 Le plan d'action auto-généré
+- Canvas mission (timeline + livrables + statut).
+- Bibliothèque (brief, références, livrables, historique).
+- Chat client intégré.
+- Zone privée prestataire (notes, brouillons).
+- MVP : upload + preview + versioning basique. Phase 2 : GitHub / Figma / Notion / Gmail.
 
-- **Dès acceptation de la mission** : Symbiose génère un plan (3-7 étapes typiques) à partir du brief.
-- **Affiché, modifiable** : le prestataire peut réordonner, ajouter, supprimer.
-- **Approbation client possible** (1 clic) : plan partageable au client pour validation.
-- **Checklists par étape** : tâches concrètes (ex : étape 2 → « identifier 3 références », « esquisser 2 concepts », « demander feedback client »).
-- **Ajustement dynamique** : si une étape dérape (délai), le copilote propose un ré-alignement.
+### 4.4 Le plan d'action auto-généré
 
-## 4. Processus de constitution (flow)
+- Généré dès acceptation mission (3-7 étapes).
+- Modifiable par le prestataire.
+- Partageable au client (1 clic).
+- Checklists par étape.
+- Ajusté dynamiquement (délai, changement scope).
+
+## 5. L'écosystème skills — ouverture et gouvernance
+
+### 5.1 Un skill : définition
+
+Un **skill** est une unité autonome, packagée, réutilisable. Format standard (à formaliser en `docs/tech/`) :
+
+```yaml
+id: audit-ux-express
+name: Audit UX express
+version: 1.2.0
+author: symbiose | talent_id | external
+domains: [design, ux]
+level: [junior, mid]
+required_tools: [web_browser, figma_reader]
+input_schema: { mission_brief, target_audience, current_site_url }
+output_schema: { audit_report, priorities, quick_wins }
+prompt_system: "Tu es un expert UX senior..."
+metrics: { time_saved_minutes, satisfaction_score }
+cost_estimate_tokens: 8000
+```
+
+### 5.2 Sources
+
+**Trois sources cohabitent** :
+
+1. **Skills natifs Symbiose** : créés et maintenus par l'équipe, qualité garantie, gratuits pour les talents.
+2. **Skills communautaires** : créés par les talents de la plateforme. Validation (voir 5.3), versioning, notation.
+3. **Skills externes importés** : depuis GitHub, Claude Skills, MCP servers, ou toute source publique respectant le format Symbiose (ou un adaptateur).
+
+### 5.3 Création & partage
+
+- **Éditeur de skill intégré** : un talent senior peut créer un skill en décrivant un workflow qu'il maîtrise. Assistant IA qui l'aide à formaliser le prompt, les inputs/outputs, les cas d'usage.
+- **Partage** : le créateur publie sur la marketplace Symbiose.
+- **Monétisation** (à trancher) : les skills communautaires peuvent rapporter **des tokens** au créateur à chaque usage réussi. Aligne incentives qualité.
+- **Versioning** : chaque skill a ses versions, notes de mise à jour, auteur responsable.
+
+### 5.4 Import depuis internet
+
+- **Formats natifs supportés** (cible phase 2) : Claude Skills, MCP (Model Context Protocol), npm-like packages IA.
+- **Adaptateurs** : pour les formats non standards, Symbiose propose un wrapper (config YAML + mapping I/O).
+- **Registry** : catalogue central indexé par domaine, niveau, popularité.
+- **Safety** : skills externes sandboxés, review automatique du prompt (détection prompt injection, PII leakage, biais).
+
+### 5.5 Gouvernance qualité
+
+- **Notation des skills** : par les talents qui les utilisent (efficacité, pertinence).
+- **Monitoring runtime** : taux d'échec, coût moyen, satisfaction (captés automatiquement).
+- **Badges qualité** : « Certifié Symbiose », « Communauté +100 usages », « Expérimental ».
+- **Retraits** : skills défaillants automatiquement dépréciés, remplacés dans les missions en cours.
+
+## 6. Processus de constitution (flow)
 
 ```
 [Acceptation de la mission]
         │
         ▼
-[Lecture brief + livrables + budget + deadline]
+[Parse mission : brief + livrables + budget + deadline + domaine]
         │
         ▼
 [Analyse profil talent : compétences, niveau, valeurs, historique]
@@ -75,108 +155,121 @@ Skills (outils / prompts / workflows) activés uniquement si pertinents :
 [Calcul gap compétences requises ↔ compétences talent]
         │
         ▼
-[Sélection des skills IA à activer]
-        ├── skills domaine (dev/design/marketing...)
-        ├── skills transverses (rédaction/chiffrage...)
-        └── skills complémentaires (ce qui comble le gap)
+[Requête au registry skills : scoring + ranking]
+        ├── skills natifs Symbiose
+        ├── skills communautaires
+        └── skills externes importés
         │
         ▼
-[Génération du plan d'action à partir du brief]
+[Composition de l'environnement]
+        ├── sélection top-N skills (avec skills compléments prioritaires)
+        ├── génération plan d'action
+        └── instanciation workspace
         │
         ▼
-[Instanciation du workspace mission]
-        ├── canvas + timeline
-        ├── bibliothèque pré-remplie
-        └── copilote chargé avec contexte
-        │
-        ▼
-[Prestataire entre dans son environnement : tout est prêt]
+[Prestataire entre : environnement prêt, skills activés, plan affiché]
 ```
 
-**Durée cible** : < 30 secondes entre l'acceptation et l'accès à l'environnement prêt.
+**Durée cible** : < 30 s entre acceptation et accès.
 
-## 5. Exemples concrets (par persona × mission)
+## 7. Exemples concrets (par persona × mission)
 
-### Ex. 1 — Léa (T1, junior UX) sur une mission refonte site PME
+### Ex. 1 — Léa (T1, junior UX) sur une refonte site PME
 
 - **Gap détecté** : peu d'expérience en audit UX quanti.
-- **Skills activés** : « Audit UX express », « Atelier persona », « Wireframing », **« Analyse data Google Analytics » (complémentaire)**.
-- **Plan auto** : 1) Découverte & audit, 2) Personas & scénarios, 3) Wireframes, 4) Prototype Figma, 5) Livraison + guide dev.
-- **Copilote** : rôle pair-mentor, ton pédagogique, suggère des questions à poser au client pour bien cadrer.
+- **Skills activés** :
+  - Natif Symbiose : `audit-ux-express`, `atelier-persona`, `wireframing-basics`.
+  - **Communautaire** (d'un autre UX senior) : `workshop-discovery-pme`.
+  - **Externe** importé : `google-analytics-reader` (MCP, compensateur de gap).
+- **Plan auto** : Découverte → Personas → Wireframes → Prototype → Livraison.
+- **Copilote** : rôle pair-mentor, ton pédagogique.
 
-### Ex. 2 — Marc (T2, senior dev full-stack) sur une mission intégration API
+### Ex. 2 — Marc (T2, senior dev) sur une intégration API
 
-- **Gap détecté** : aucun (profil très complet).
-- **Skills activés** : « Review code », « Génération tests », « Doc technique », **pas de skills complémentaires**.
-- **Plan auto** : 1) Audit archi actuelle, 2) Spec intégration, 3) Implémentation, 4) Tests, 5) Livraison doc.
-- **Copilote** : rôle exécutant (pas pédagogique), répond uniquement quand sollicité, générations concises.
+- **Gap détecté** : aucun.
+- **Skills activés** :
+  - Natifs : `code-review`, `test-generation`, `tech-doc`.
+  - Aucun compensateur (profil complet).
+  - **Externe** : MCP GitHub pour accès repo.
+- **Plan auto** : Audit → Spec → Implémentation → Tests → Livraison.
+- **Copilote** : rôle exécutant.
 
 ### Ex. 3 — Amine (T3, étudiant, mission landing page)
 
 - **Gap détecté** : cadrage client + livraison pro.
-- **Skills activés** : « HTML/CSS/JS », « Copywriting landing », **« Cadrage besoin client » (complémentaire)**, **« Livraison & passation » (complémentaire)**.
-- **Plan auto** : 1) Cadrage avec client, 2) Wireframe, 3) Design + dev, 4) Intégration contenus, 5) Livraison + passation.
-- **Copilote** : rôle mentor fort, checkpoints pédagogiques à chaque étape.
+- **Skills activés** :
+  - Natifs : `html-css-js`, `copywriting-landing`.
+  - **Communautaires** : `cadrage-besoin-client-pme` (gros compensateur), `passation-livraison-pro`.
+- **Plan auto** : Cadrage → Wireframe → Design+dev → Intégration → Livraison.
+- **Copilote** : rôle mentor fort.
 
-## 6. Principes de conception
+## 8. Principes de conception
 
-1. **Profile-first, mission-second** : on adapte l'IA au talent, pas l'inverse. Le talent reste au centre.
-2. **Complémentarité, pas substitution** : l'IA remplit les gaps, elle ne fait pas le travail à la place.
-3. **Transparence** : le talent voit **quels skills** sont activés et pourquoi. Il peut en désactiver.
-4. **Évolutif** : les skills utilisés / ignorés nourrissent l'apprentissage — la plateforme apprend pour les missions suivantes.
-5. **Ownership** : le livrable reste celui du talent. L'IA laisse toujours la décision finale.
-6. **Modulaire** : un skill est un bloc autonome (comme un plug-in) — permet d'en ajouter sans refonte.
-7. **Mesurable** : chaque skill mesure sa contribution (temps gagné, itérations réduites, NPS talent).
+1. **Écosystème ouvert par défaut** : tout skill doit pouvoir être créé, partagé, importé. Format standard documenté.
+2. **Profile-first, mission-second** : on adapte l'écosystème au talent, pas l'inverse.
+3. **Complémentarité, pas substitution** : l'IA comble les gaps, le talent reste aux commandes.
+4. **Transparence** : le talent voit quels skills sont activés, d'où ils viennent, pourquoi. Il peut en désactiver/remplacer.
+5. **Gouvernance par l'usage** : la qualité émerge de la notation + monitoring runtime, pas d'un comité fermé.
+6. **Ownership** : le livrable reste celui du talent.
+7. **Modulaire & versionné** : chaque skill est atomique, versionné, remplaçable sans casser la mission.
+8. **Incentivisé** : créer un skill utilisé par d'autres rapporte des tokens au créateur (aligne qualité).
+9. **Safe by default** : sandboxing, review prompt, no-data-leak, no-training-on-client-data.
 
-## 7. Pile technique pressentie (à formaliser en `docs/tech/`)
+## 9. Pile technique pressentie (à formaliser en `docs/tech/`)
 
-- **Moteur IA** : LLM généraliste (Claude / GPT / Mistral) orchestré via un layer d'agents.
-- **Skills = agents spécialisés** (ou « prompts packagés »), chacun avec son prompt système, ses outils, sa mémoire.
-- **Profil talent vectorisé** : embeddings compétences + historique pour match rapide avec les skills requis.
-- **Mission parsée** : extraction structurée du brief (domaine, livrables, deadline, budget, tags) pour alimenter le matching skills + plan auto.
-- **Workspace** : frontend SPA (probablement React/Next), espace temps réel (WebSockets) pour chat & collab.
-- **Sécurité & confidentialité** : isolation stricte par mission, chiffrement données client, options « pas d'entraînement sur mes données ».
+- **Moteur IA** : multi-LLM orchestré (à décider : Claude pour raisonnement, GPT ou Mistral pour créa, local pour coût bas).
+- **Skills = agents packagés** : manifest YAML + prompt système + outils MCP + mémoire.
+- **Registry skills** : base de données + index vectoriel (pg + pgvector ou Pinecone/Weaviate).
+- **Moteur matching** : embeddings profil + mission + skills, scoring règles métier, re-ranking.
+- **Sandboxing** : exécution skills externes en environnement isolé.
+- **Workspace** : SPA React/Next, realtime via WebSockets.
+- **Sécurité** : isolation par mission, chiffrement, opt-out entraînement.
 
-## 8. Plan par phases
+## 10. Plan par phases
 
-### Phase MVP — L'essentiel du cockpit
+### Phase MVP
 
-- Analyse brief → plan d'action auto-généré (3-5 skills domaine de base).
-- Copilote IA mission-aware (contexte brief + profil basique).
-- Workspace minimal : canvas timeline + bibliothèque + chat client.
-- 3-5 skills domaine lancés au départ (tech, design, marketing, rédaction, juridique — à prioriser).
-- Persona IA basique (2 modes : pair vs exécutant).
+- **Moteur matching** basique : profil + mission → sélection parmi 10-20 skills natifs.
+- **Format standard skill** défini et documenté.
+- **5-10 skills natifs Symbiose** couvrant les domaines prioritaires PME (tech, design, marketing, copywriting, juridique basique).
+- **Copilote IA mission-aware** (contexte brief + profil basique).
+- **Workspace minimal**.
+- **Plan d'action auto** (3-5 étapes).
+- **Pas encore** : création par les talents, import externe, marketplace skills.
 
-### Phase 2 — La complémentarité profonde
+### Phase 2
 
-- Détection automatique des gaps compétences.
-- Skills complémentaires auto-activés.
-- Persona IA ajustée finement (formel/informel, rôle adaptatif).
-- Apprentissage plateforme (les usages nourrissent la sélection de skills).
-- Intégrations externes (GitHub, Figma, Notion).
+- **Éditeur de skill intégré** : les talents seniors peuvent créer et partager.
+- **Marketplace skills** : visible dans la plateforme, notation, versioning.
+- **Import MCP / Claude Skills** : adaptateurs pour sources externes.
+- **Matching avancé** : détection fine des gaps, recommandation de compensateurs.
+- **Monétisation créateurs** : tokens sur usages réussis.
 
-### Phase 3 — L'écosystème
+### Phase 3
 
-- Marketplace interne de skills (créés par la communauté de talents seniors + validés Symbiose).
-- Skills spécialisés sectoriels (santé, legal tech, green tech...).
-- Benchmarks de performance par skill (le talent voit l'impact réel sur ses missions).
-- API publique skills : intégration d'outils externes.
+- **Gouvernance communautaire** : comité de qualité, modération communautaire.
+- **Skills sectoriels** (santé, legal tech, green tech).
+- **API publique skills** : outils externes consomment l'écosystème.
+- **Apprentissage plateforme** : le matching s'améliore continuellement à partir des usages.
 
-## 9. Questions ouvertes à trancher
+## 11. Questions ouvertes à trancher
 
-1. **Granularité des skills** : un skill fait une chose (ex: « génération de persona ») ou couvre un mini-workflow (ex: « kick-off mission » = brief + questions + structure) ?
-2. **Choix LLM** : un LLM unique (Claude, par ex) ou multi-LLM orchestré selon la tâche (GPT pour créativité, Claude pour raisonnement, Mistral pour FR...) ?
-3. **Skills créés par qui ?** : équipe Symbiose uniquement au MVP, ou ouverts aux talents seniors dès Phase 2 ? Gouvernance qualité ?
-4. **Confidentialité client** : comment isoler le contexte d'une mission du reste ? Stockage, logs, opt-out entraînement — à formaliser dès MVP.
-5. **Facturation IA** : consommation tokens IA incluse dans la commission 10 % ou facturée à part ? Impact sur la marge.
-6. **Interface** : web uniquement au MVP, ou extension VSCode / Figma / Notion pour les talents tech/design déjà sur ces outils ?
-7. **Plan d'action auto** : visible/modifiable par le client dès le début, ou seulement après approbation du talent ?
-8. **Fallback** : que se passe-t-il si un skill est défectueux ou indisponible ? UX de gestion d'erreur IA.
+1. **Format standard skill** : adopter le format Claude Skills ? MCP ? Créer un format Symbiose compatible avec les deux via adaptateur ?
+2. **Monétisation créateurs** : tokens uniquement, ou % revenus de la commission Symbiose ? Barème ?
+3. **Granularité skill** : atomique (1 skill = 1 tâche) ou composé (1 skill = mini-workflow) ? Probablement les deux, avec composition possible.
+4. **Choix LLM** : mono-LLM (Claude) ou multi-LLM orchestré ? Estimation coût par mission.
+5. **Confidentialité client** : comment isoler strictement le contexte mission du reste de la plateforme ? Opt-out entraînement dès MVP.
+6. **Sécurité skills externes** : review manuelle au MVP, automatisée en phase 2 ?
+7. **Facturation IA** : inclus dans la commission 10 % ou facturé à part au client / au talent ?
+8. **Interface** : web only au MVP, extensions VSCode / Figma / Notion en phase 2 ?
+9. **Qui décide quels skills sont activés** : 100 % plateforme (magique) ? Ou proposition + acceptation talent (transparence) ? Hybride ?
+10. **Skill comme contenu vs code** : un skill est-il juste un prompt + manifest (léger), ou peut-il exécuter du code (plus puissant mais plus risqué) ?
 
-## 10. Prochaines actions (ce chantier)
+## 12. Prochaines actions (ce chantier)
 
-1. Prioriser les **5-10 premiers skills** à construire pour le MVP (tableau skill × domaine × persona).
-2. Spécifier **un skill pilote de bout en bout** (input, prompt système, outils, output attendu, mesures).
-3. Maquetter le **flow de constitution** (wireframes : écran d'acceptation mission → loader → cockpit prêt).
-4. Décider la **stack LLM** et le coût cible par mission.
-5. Itérer le plan d'action auto sur 3-5 missions fictives pour valider le format.
+1. **Formaliser le format standard skill** (manifest, I/O, sécurité) — proposer v1 technique en anglais dans `docs/tech/02-skill-format.md`.
+2. **Spécifier le moteur de matching** : inputs, sorties, règles, scoring — `docs/tech/03-matching-engine.md`.
+3. **Prioriser les 5-10 skills natifs MVP** : tableau par domaine × persona × priorité.
+4. **Spécifier un skill pilote** bout-en-bout (candidat : `cadrage-besoin-client-pme` ou `audit-ux-express`).
+5. **Décider la stack LLM** + estimation coût / mission.
+6. **Trancher les 10 questions ouvertes** ci-dessus.

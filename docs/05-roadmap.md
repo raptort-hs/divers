@@ -69,18 +69,20 @@
 
 ## Prochaine action
 
-Scope MVP validé, onboarding PME v1 + 5 questions tranchées, **doc `08-environnement-prestataire.md` créé (cœur produit)**.
+**Orientation stratégique v2 (2026-04-16) : l'environnement prestataire devient un écosystème ouvert de skills.**
+Skills créables par Symbiose, par les talents, **importables depuis internet** (Claude Skills, MCP, GitHub). Le cœur = **moteur de matching profil × mission × skills**.
 
-Chantier actif : **constitution de l'environnement prestataire** (cockpit IA mission-aware). Priorité majeure.
+Doc `08-environnement-prestataire.md` entièrement révisé (v2) avec :
+- Matching triadique (profil / mission / skills) comme différenciateur.
+- 3 sources skills : natifs, communautaires, externes.
+- Gouvernance par l'usage + monétisation créateurs en tokens.
+- Format standard skill pressenti (YAML manifest).
 
-Prochains sous-chantiers immédiats :
-1. Prioriser les **5-10 premiers skills** à construire pour le MVP (tableau skill × domaine × persona).
-2. Spécifier **un skill pilote** de bout en bout (input, prompt système, outils, output, mesures).
-3. Décider la **stack LLM** (mono vs multi-LLM) et le coût cible par mission.
-4. Trancher les 8 questions ouvertes de `08-environnement-prestataire.md`.
-5. Maquetter le flow « acceptation mission → cockpit prêt ».
+Prochains sous-chantiers prioritaires :
+1. **Formaliser le format standard skill** → `docs/tech/02-skill-format.md` (anglais).
+2. **Spécifier le moteur de matching** → `docs/tech/03-matching-engine.md`.
+3. Prioriser les 5-10 skills natifs MVP.
+4. Spécifier un skill pilote bout-en-bout.
+5. Trancher les 10 questions ouvertes de `08`.
 
-Ensuite :
-- Onboarding talent (flow).
-- Chiffrage KPIs MVP.
-- Architecture technique (`docs/tech/01-architecture.md`, anglais).
+Ensuite : onboarding talent, KPIs MVP, architecture technique globale.

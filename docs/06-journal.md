@@ -5,6 +5,35 @@ Les entrées les plus récentes en haut.
 
 ---
 
+## 2026-04-16 — Environnement prestataire v2 : écosystème ouvert de skills
+
+**Fait**
+- Révision majeure de `docs/08-environnement-prestataire.md` (v1 → v2) suite à l'orientation stratégique utilisateur : **écosystème ouvert de skills**.
+- Nouvelles sections clés :
+  - **§3 Matching triadique** (profil × mission × skills) posé comme cœur technique/stratégique.
+  - **§5 Écosystème skills** : définition format standard (YAML manifest), 3 sources (natifs / communautaires / externes), création/partage, import depuis internet (Claude Skills, MCP, GitHub), gouvernance par l'usage, monétisation créateurs en tokens.
+  - Principes enrichis : écosystème ouvert par défaut, gouvernance par usage, incentivisé, safe by default.
+  - Plan par phases retravaillé : format standard + moteur matching dès MVP ; éditeur skills + marketplace + import MCP/Claude Skills en Phase 2 ; API publique + skills sectoriels en Phase 3.
+- 10 questions ouvertes (vs 8 précédemment), dont nouvelles : format standard à adopter, monétisation créateurs, sécurité skills externes, skill-as-code vs prompt, qui décide des skills activés.
+- Mise à jour `05-roadmap.md` avec les 5 sous-chantiers prioritaires.
+
+**Décisions prises**
+- **Orientation stratégique** : Symbiose ne maintient pas un catalogue fermé de skills. C'est un écosystème ouvert composé à la volée pour chaque mission.
+- **Différenciateur** = qualité du matching triadique, pas la taille du catalogue.
+- **Monétisation** : les créateurs de skills communautaires gagnent des tokens à chaque usage réussi (aligne incentives qualité).
+
+**Reste à faire**
+- Formaliser le format standard skill (doc technique en anglais).
+- Spécifier le moteur de matching.
+- Prioriser les skills natifs MVP (5-10).
+- Spécifier un skill pilote bout-en-bout.
+- Trancher les 10 questions ouvertes.
+
+**Prochaine action**
+Demander à l'utilisateur par où on attaque : formaliser le format skill, spécifier le moteur de matching, prioriser les skills MVP, ou trancher quelques questions ouvertes en amont.
+
+---
+
 ## 2026-04-16 — Environnement prestataire (cœur produit) — v1
 
 **Fait**
