@@ -67,25 +67,32 @@
 - Marketplace de templates de mission.
 - Insights sectoriels (benchmarks tarifs, tendances compétences).
 
-## Prochaine action
+## Squelette MVP livré — 2026-04-17
 
-**Orientation architecturale v3 (2026-04-16) : Symbiose est AI-native et agent-native.**
-Le matching profil × mission × skills est opéré par un **agent spécialisé** (Matching Agent), pas par un algorithme classique. La plateforme est une orchestration d'agents spécialisés (Brief-Parser, Matching, Plan-Builder, Mission Copilot, Skill-Importer, Safety-Review).
+L'utilisateur a demandé une livraison bout-en-bout en autonomie. Squelette fonctionnel posé :
 
-Doc `docs/tech/01-agent-architecture.md` créé (EN) avec :
-- Catalogue des 6 agents MVP.
-- Deep-dive sur le Matching Agent (inputs, tools, output contract, system prompt sketch, metrics).
-- Proposition Claude Agent SDK comme orchestrateur.
-- 8 questions ouvertes technique.
+1. ✅ **Skill manifest v1 figé** — `docs/tech/02-skill-format.md` (10/10 décisions actées).
+2. ✅ **Specs agents** — Matching (03), Brief-Parser (04), Mission Copilot (05).
+3. ✅ **Data model** (06), **API spec** (07), **ADR stack** (08), **JSON-Schema** (`schemas/skill.schema.json`).
+4. ✅ **5 skills natifs** — `skills/native/` : audit-ux-express, executive-summary-generator, meeting-notes-to-actions, client-deck-builder, technical-spec-writer.
+5. ✅ **Backend Python** — `backend/` : FastAPI + registre skills + 3 agents (Brief-Parser, Matching, Mission Copilot) + CLI (`symbiose demo`, `symbiose serve`, `symbiose skills list/validate`).
+6. ✅ **Frontend minimal** — Jinja + HTMX + Tailwind CDN : landing, onboarding PME, page mission, page live (SSE Copilot), registre skills.
+7. ✅ **12 tests unitaires** verts couvrant validation schema, registre, Brief-Parser, Matching Agent.
 
-Doc `08-environnement-prestataire.md` mise à jour (§3, §8, §9) pour refléter l'approche agent-native.
+### Ce qui tourne déjà
 
-Prochains sous-chantiers prioritaires :
-1. ✅ **Skill manifest v1** → `docs/tech/02-skill-format.md` (YAML, safety, governance, adapters externes, 3 exemples, 10 questions ouvertes).
-2. **Matching Agent spec complète** → `docs/tech/03-matching-agent.md` (s'appuie sur le skill manifest).
-3. Valider le choix Claude Agent SDK vs alternatives.
-4. Trancher les 10 questions ouvertes du skill manifest (namespacing, i18n, certification thresholds, etc.).
-5. Prioriser les 5 premiers skills natifs MVP.
-6. Prototype end-to-end thin slice (1 skill + Brief-Parser + Matching + Copilot statique) pour valider la faisabilité.
+```bash
+make install && make demo-run          # démo bout-en-bout en CLI
+make serve                             # FastAPI sur http://127.0.0.1:8000
+make test                              # 12/12
+```
 
-Ensuite : onboarding talent, KPIs MVP, architecture globale.
+### Prochains chantiers (post-squelette)
+
+1. **Persistence** — migrer de l'in-memory vers SQLite (schéma prêt dans `docs/tech/06-data-model.md`).
+2. **Auth** — sessions cookies + argon2id (ADR-05).
+3. **Adapters externes** — implémenter `claude-skill-adapter`, `mcp-adapter`, `github-adapter`.
+4. **LLM mode live** — fixtures enregistrées pour tests + chaîne Anthropic testée en CI.
+5. **Onboarding talent** (le MVP ne couvre que l'onboarding PME + proposition mission).
+6. **Chiffrage KPIs** (tableau §Indicateurs ci-dessus).
+7. **Pitch investisseurs** — `docs/09-pitch-investisseurs.md`.

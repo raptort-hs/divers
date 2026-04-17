@@ -62,19 +62,38 @@ Décrire en 1 ligne la toute prochaine action.
 /
 ├── README.md
 ├── CLAUDE.md
-└── docs/
-    ├── 01-vision.md
-    ├── 02-proposition-valeur.md
-    ├── 03-produit.md
-    ├── 04-business-model.md
-    ├── 05-roadmap.md
-    ├── 06-journal.md
-    ├── 07-personas.md
-    ├── 08-environnement-prestataire.md    # cœur produit
-    ├── 09-pitch-investisseurs.md   (à venir)
-    ├── flows/                       # parcours utilisateurs détaillés
-    │   └── onboarding-pme.md
-    └── tech/                        # doc technique, en anglais
-        ├── 01-agent-architecture.md
-        └── 02-skill-format.md
+├── Makefile
+├── docs/
+│   ├── 01-vision.md
+│   ├── 02-proposition-valeur.md
+│   ├── 03-produit.md
+│   ├── 04-business-model.md
+│   ├── 05-roadmap.md
+│   ├── 06-journal.md
+│   ├── 07-personas.md
+│   ├── 08-environnement-prestataire.md    # cœur produit
+│   ├── 09-pitch-investisseurs.md          # (à venir)
+│   ├── flows/                             # parcours utilisateurs détaillés
+│   │   └── onboarding-pme.md
+│   └── tech/                              # doc technique, en anglais
+│       ├── 01-agent-architecture.md
+│       ├── 02-skill-format.md             # skill manifest v1 figé
+│       ├── 03-matching-agent.md
+│       ├── 04-brief-parser-agent.md
+│       ├── 05-mission-copilot-agent.md
+│       ├── 06-data-model.md
+│       ├── 07-api-spec.md
+│       ├── 08-adr-stack.md
+│       └── schemas/skill.schema.json
+├── skills/                                # bundles YAML (manifest + prompt + examples)
+│   └── native/                            # 5 skills MVP
+│       ├── audit-ux-express/
+│       ├── executive-summary-generator/
+│       ├── meeting-notes-to-actions/
+│       ├── client-deck-builder/
+│       └── technical-spec-writer/
+└── backend/                               # backend Python (FastAPI + agents + CLI)
+    ├── pyproject.toml
+    ├── symbiose/                          # package : config, cli, main, models, skills, llm, agents, web
+    └── tests/
 ```
