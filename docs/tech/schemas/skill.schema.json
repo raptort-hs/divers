@@ -1,0 +1,258 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://symbiose.dev/schemas/skill.schema.json",
+  "title": "Symbiose Skill Manifest",
+  "description": "JSON-Schema v1 derived from docs/tech/02-skill-format.md. Validates skill.yaml (after YAML -> JSON parsing).",
+  "type": "object",
+  "required": [
+    "manifest_version",
+    "id",
+    "name",
+    "version",
+    "author",
+    "source",
+    "description",
+    "taxonomy",
+    "interface",
+    "safety"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "manifest_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^(@[a-z0-9][a-z0-9-]*/)?[a-z0-9][a-z0-9-]*$",
+      "description": "Flat kebab-case slug for native skills; @handle/slug for community and external."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+
+    "author": {
+      "type": "object",
+      "required": ["type", "id", "display_name"],
+      "properties": {
+        "type": { "enum": ["native", "community", "external"] },
+        "id": { "type": "string" },
+        "handle": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "display_name": { "type": "string" }
+      }
+    },
+
+    "source": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": { "enum": ["native", "community", "claude-skill", "mcp-server", "github", "web"] },
+        "origin_url": { "type": ["string", "null"], "format": "uri" },
+        "adapter": { "type": ["string", "null"] },
+        "license": { "type": "string" }
+      }
+    },
+
+    "description": {
+      "type": "object",
+      "required": ["short", "long"],
+      "properties": {
+        "short": { "$ref": "#/$defs/i18nString" },
+        "long":  { "$ref": "#/$defs/i18nString" },
+        "intended_for": { "$ref": "#/$defs/i18nString" },
+        "non_goals": { "$ref": "#/$defs/i18nString" }
+      }
+    },
+
+    "taxonomy": {
+      "type": "object",
+      "required": ["domains", "seniority_target", "mission_phases", "languages"],
+      "properties": {
+        "domains":      { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "sub_domains":  { "type": "array", "items": { "type": "string" } },
+        "tags":         { "type": "array", "items": { "type": "string" } },
+        "seniority_target": {
+          "type": "array",
+          "items": { "enum": ["junior", "confirmed", "senior", "expert"] },
+          "minItems": 1
+        },
+        "mission_phases": {
+          "type": "array",
+          "items": { "enum": ["discovery", "audit", "design", "build", "review", "handover"] },
+          "minItems": 1
+        },
+        "languages": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z]{2}$" },
+          "minItems": 1
+        }
+      }
+    },
+
+    "interface": {
+      "type": "object",
+      "required": ["inputs", "outputs"],
+      "properties": {
+        "inputs":  { "type": "array", "items": { "$ref": "#/$defs/ioField" } },
+        "outputs": { "type": "array", "items": { "$ref": "#/$defs/ioField" } },
+        "preconditions": { "type": "array", "items": { "type": "string" } },
+        "side_effects":  { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "tools": {
+      "type": "object",
+      "properties": {
+        "mcp_servers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "version"],
+            "properties": {
+              "id": { "type": "string" },
+              "version": { "type": "string" },
+              "scope": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "function_tools": { "type": "array" },
+        "web_access": { "type": "boolean" },
+        "file_access": {
+          "type": "object",
+          "properties": {
+            "read":  { "type": "array", "items": { "type": "string" } },
+            "write": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "depends_on_skills": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "version"],
+            "properties": {
+              "id": { "type": "string" },
+              "version": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+
+    "runtime": {
+      "type": "object",
+      "properties": {
+        "llm": {
+          "type": "object",
+          "properties": {
+            "preferred": { "type": "string" },
+            "tested":    { "type": "array", "items": { "type": "string" } },
+            "min_context_tokens": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "offline": { "type": "boolean" },
+        "estimated_cost_per_run": { "type": "string" },
+        "estimated_latency_p50":  { "type": "string" },
+        "estimated_latency_p95":  { "type": "string" }
+      }
+    },
+
+    "safety": {
+      "type": "object",
+      "required": ["pii_handling", "data_egress", "injection_risk", "sandbox_level", "review_status"],
+      "properties": {
+        "pii_handling":   { "enum": ["none", "processes-pii", "stores-pii"] },
+        "data_egress":    { "enum": ["none", "workspace-only", "external-api", "internet"] },
+        "injection_risk": { "enum": ["low", "medium", "high"] },
+        "sandbox_level":  { "enum": ["strict", "moderate", "trusted"] },
+        "review_status":  { "enum": ["unreviewed", "community-reviewed", "certified-v1", "deprecated", "blocked"] },
+        "reviewed_by":    { "type": "array", "items": { "type": "string" } },
+        "reviewed_at":    { "type": "string", "format": "date-time" },
+        "human_oversight_required": { "type": "boolean" },
+        "content_warnings": { "type": "array", "items": { "type": "string" } }
+      },
+      "allOf": [
+        {
+          "if": {
+            "anyOf": [
+              { "properties": { "injection_risk": { "const": "high" } } },
+              { "properties": { "data_egress":    { "const": "internet" } } }
+            ]
+          },
+          "then": {
+            "required": ["sandbox_level", "human_oversight_required"],
+            "properties": {
+              "sandbox_level": { "const": "strict" },
+              "human_oversight_required": { "const": true }
+            }
+          }
+        }
+      ]
+    },
+
+    "governance": {
+      "type": "object",
+      "properties": {
+        "certified":          { "type": "boolean" },
+        "certification_level": { "enum": ["bronze", "silver", "gold", null] },
+        "usage_count":        { "type": "integer", "minimum": 0 },
+        "success_rate":       { "type": "number", "minimum": 0, "maximum": 1 },
+        "avg_rating":         { "type": "number", "minimum": 0, "maximum": 5 },
+        "disable_rate":       { "type": "number", "minimum": 0, "maximum": 1 },
+        "deprecated":         { "type": "boolean" },
+        "deprecated_reason":  { "type": ["string", "null"] },
+        "replaced_by":        { "type": ["string", "null"] }
+      }
+    },
+
+    "economics": {
+      "type": "object",
+      "required": ["price_model", "author_share_pct", "platform_share_pct"],
+      "properties": {
+        "price_model":        { "enum": ["per-run", "per-mission", "flat", "free"] },
+        "price_tokens":       { "type": "integer", "minimum": 0 },
+        "author_share_pct":   { "type": "integer", "minimum": 0, "maximum": 100 },
+        "platform_share_pct": { "type": "integer", "minimum": 0, "maximum": 100 }
+      }
+    },
+
+    "lifecycle": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status":       { "enum": ["draft", "beta", "active", "deprecated", "archived"] },
+        "published_at": { "type": ["string", "null"], "format": "date-time" },
+        "archived_at":  { "type": ["string", "null"], "format": "date-time" }
+      }
+    }
+  },
+
+  "$defs": {
+    "i18nString": {
+      "type": "object",
+      "required": ["fr"],
+      "properties": {
+        "fr": { "type": "string" },
+        "en": { "type": "string" }
+      },
+      "additionalProperties": { "type": "string" }
+    },
+    "ioField": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name":        { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "type":        { "type": "string" },
+        "required":    { "type": "boolean" },
+        "description": { "type": "string" }
+      }
+    }
+  }
+}
