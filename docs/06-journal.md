@@ -5,6 +5,31 @@ Les entrées les plus récentes en haut.
 
 ---
 
+## 2026-04-17 — Skill Manifest v1 figé : 10/10 décisions actées
+
+**Fait**
+- Validation utilisateur des 3 questions produit restantes (recommandations prises telles quelles).
+- `docs/tech/02-skill-format.md` §9 étendu de 7 à 10 décisions : ajout 9.8 (pricing), 9.9 (revenue split imports), 9.10 (seuils certification).
+- Nouvelle §5.1 : tableau concret des seuils bronze/silver/gold + règle d'auto-downgrade sur métriques rolling 30j.
+- §6.3 mis à jour : règle claim-based payout avec rétroactif 90 jours explicite.
+- §10 « Open product questions » supprimée (plus rien à trancher).
+- §11 « Next steps » devient §10, item #1 retiré (questions produit résolues).
+
+**Décisions prises**
+- **9.8 Token pricing** : statique au MVP (prévisible pour les auteurs), dynamique reporté Phase 2.
+- **9.9 Revenue split imports** : Symbiose garde 100 % tant que non-revendiqué ; à la revendication, payout rétroactif 90 jours. Incite à revendiquer, pas de virement fantôme.
+- **9.10 Seuils certification v1** : Bronze ≥10 runs / ≥4.0 / ≤20 % disable ; Silver ≥50 / ≥4.3 / ≤12 % ; Gold ≥200 / ≥4.5 / ≤8 % + revue humaine. Recalibrage à 6 mois.
+
+**Reste à faire**
+- Geler le JSON-Schema → `docs/tech/schemas/skill.schema.json`.
+- Rédiger la spec Matching Agent v1 → `docs/tech/03-matching-agent.md`.
+- Identifier les 5 premiers skills natifs MVP.
+
+**Prochaine action**
+Demander à l'utilisateur sur quoi enchaîner : JSON-Schema, spec Matching Agent, ou liste des 5 skills natifs MVP.
+
+---
+
 ## 2026-04-17 — Skill Manifest : 7 décisions techniques actées, 3 questions produit restantes
 
 **Fait**
