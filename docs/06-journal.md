@@ -5,6 +5,88 @@ Les entrées les plus récentes en haut.
 
 ---
 
+## 2026-04-17 — MVP squelette livré bout-en-bout (autonomie totale)
+
+Utilisateur a demandé : « déroule tout en toute autonomie sans me poser de questions et livre un MVP ». Exécution en 5 phases, décisions techniques prises en autonomie et tracées dans `docs/tech/08-adr-stack.md`.
+
+**Fait**
+
+Phase 1 — Specs techniques (commit `ec54449`) :
+- `docs/tech/03-matching-agent.md` : spec complète (inputs, tools, scoring §5, system prompt, eval, failure modes).
+- `docs/tech/04-brief-parser-agent.md` : clarification loop, contrat JSON, eval.
+- `docs/tech/05-mission-copilot-agent.md` : 3 niveaux d'autonomie (manual / guided / auto), 7 événements runtime.
+- `docs/tech/06-data-model.md` : entités, tables SQL, invariants, ULID IDs, retention.
+- `docs/tech/07-api-spec.md` : REST + SSE, 4 sections routes, OpenAPI 3.1.
+- `docs/tech/08-adr-stack.md` : 10 ADR (FastAPI, Python, SQLite→PG, Jinja+HTMX, argon2, filesystem-source-of-truth skills, LLM client isolation, i18n, Docker, observabilité).
+- `docs/tech/schemas/skill.schema.json` : JSON-Schema Draft 2020-12 dérivé du manifest v1.
+
+Phase 2 — 5 skills natifs (commit `ca6db07`) :
+- `skills/native/audit-ux-express/` (silver, 50 tokens) — 4h d'audit UX structuré, déjà exemple de référence dans le manifest.
+- `skills/native/executive-summary-generator/` (gold, 15) — 1-pager exec à partir d'un livrable long.
+- `skills/native/meeting-notes-to-actions/` (gold, 5) — CR + actions assignées depuis notes brutes.
+- `skills/native/client-deck-builder/` (bronze, 25) — deck 8-12 slides Slidev-ready.
+- `skills/native/technical-spec-writer/` (bronze, 30) — spec technique structurée.
+- Chaque bundle : `skill.yaml` + `system_prompt.md` + `examples/01-basic.yaml` canonique.
+- `skills/README.md` : inventaire + tableau de certification.
+
+Phase 3 — Backend Python (commit `9380b64`) :
+- `backend/pyproject.toml` avec FastAPI, Pydantic v2, PyYAML, jsonschema, Typer, Jinja2, Anthropic (optionnel).
+- Models Pydantic : `Brief`, `Mission`, `Skill` (SkillManifest complet + Summary + MatchingResult), `Talent`.
+- `skills.registry` : scan filesystem + validation JSON-Schema + recherche par domaine/phase/certif/budget.
+- `llm.client` : abstraction `LLMClient` avec 2 implémentations (`FixtureLLMClient`, `AnthropicLLMClient`). Mode par défaut fixture → démo tourne sans API key.
+- 3 agents : Brief-Parser (LLM ou fallback heuristique FR avec extraction budget/deadline/phases), Matching Agent (déterministe, 8 sous-scores pondérés, rationale FR template, plan phase-ordonné, détection besoins non couverts), Mission Copilot (exécution du plan, événements SSE typés, outputs simulés en fixture mode).
+- CLI Typer : `symbiose demo`, `symbiose demo --execute`, `symbiose skills list/validate`, `symbiose serve`.
+- 12 tests unitaires pytest tous verts (schema, registry, brief parsing, matching).
+
+Phase 4 — Frontend minimal (commit `4ebeafe`) :
+- Jinja2 + HTMX + Tailwind CDN. 5 templates : base, landing, onboarding, mission, mission_live, skills.
+- Onboarding PME : formulaire libre → POST → Brief-Parser → Matching → redirect 303 vers mission.
+- Mission proposée : panneau brief + skills activés + plan phase-ordonné + bouton démarrer.
+- Mission live : HTMX SSE consommant `/mission/{id}/events` pour streamer les événements du Copilot.
+- Page skills : carte par skill avec badges certification (gold/silver/bronze).
+
+Phase 5 — Intégration (commit `d448a7b`) :
+- README racine réécrit : démo en 30s, arborescence, 8 docs produit + 8 docs technique.
+- `backend/README.md` : install, CLI, API, LLM mode, tests, limites connues.
+- `Makefile` : `install / demo / demo-run / test / serve / validate-skills / clean`.
+- `docs/05-roadmap.md` : section « Squelette MVP livré » avec bilan et prochains chantiers (persistence, auth, adapters externes, LLM live, onboarding talent, KPIs chiffrés, pitch investisseurs).
+- `CLAUDE.md` §7 : structure mise à jour avec `backend/`, `skills/`, `Makefile`, docs/tech à jour.
+
+**Décisions prises en autonomie** (voir `docs/tech/08-adr-stack.md`)
+- Stack backend : Python 3.11 + FastAPI (ADR-01). Thin harness maison sur anthropic-python plutôt que framework lourd (ADR-02).
+- Stack frontend : FastAPI + Jinja + HTMX + Tailwind CDN, pas de Next.js au MVP (ADR-03).
+- Persistence : in-memory au MVP démo, SQLite prêt en `db/init.sql` pour itération suivante (ADR-04).
+- Auth : sessions + argon2id prévus, pas encore implémentés dans la démo (ADR-05).
+- Skills = filesystem source of truth, registre en mémoire dérivé (ADR-06).
+- LLM isolation : tout passe par `LLMClient` avec fallback déterministe (ADR-07).
+- i18n : skill manifests i18n-ready, frontend FR-only au MVP (ADR-08).
+- Déploiement : un Dockerfile, zéro cloud-lock-in (ADR-09).
+- Obs : stdout + `ledger_entry`, pas d'APM externe (ADR-10).
+- Brief-Parser et Matching Agent tournent **sans LLM** par défaut → démo reproductible sur n'importe quelle machine, pas d'API key requise.
+
+**Ce qui tourne aujourd'hui**
+```
+make install
+make demo-run         # parsing → matching → exécution plan avec événements Copilot
+make serve            # FastAPI + web UI sur http://127.0.0.1:8000
+make test             # 12/12 verts
+make validate-skills  # 5/5 OK
+```
+
+**Reste à faire (prochains chantiers)**
+- Persistence SQLite + migrations.
+- Auth sessions + argon2id + pages signup/login.
+- Adapters externes : `claude-skill-adapter`, `mcp-adapter`, `github-adapter`.
+- Chaîne Anthropic testée en CI avec fixtures enregistrées.
+- Flow onboarding talent (le MVP ne couvre que PME + proposition mission).
+- Chiffrage KPIs MVP (cibles PME, GMV, NPS).
+- Pitch investisseurs (`docs/09-pitch-investisseurs.md`).
+
+**Prochaine action**
+Démo prête — lancer `make demo-run` pour valider bout-en-bout, puis prioriser : persistence ? onboarding talent ? premier adapter externe ? Le choix de la suite revient à l'utilisateur.
+
+---
+
 ## 2026-04-17 — Skill Manifest v1 figé : 10/10 décisions actées
 
 **Fait**
