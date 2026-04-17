@@ -134,10 +134,10 @@ Landing
 
 ---
 
-## Questions ouvertes
+## Questions ouvertes — toutes tranchées 2026-04-16
 
-1. **Anti-abus signup** : faut-il un captcha dès l'étape 1 ou seulement si comportement suspect ? (Impact friction.)
-2. **Modération profil entreprise** : vérification manuelle des nouvelles PME ou 100 % automatique via API INSEE ?
-3. **Langue du copilote IA** : FR uniquement au MVP ou EN dispo pour internationaux résidant en FR ?
-4. **Paiement** : Stripe Connect vs Lemonway vs MangoPay — à benchmarker à l'étape tech.
-5. **Partage de coordonnées hors-plateforme** : stratégie anti-bypass (interdiction d'échange d'emails dans le chat avant signature) — MVP ou Phase 2 ?
+1. ~~**Anti-abus signup**~~ → **Pas de captcha nécessaire** au MVP. On monitorera les signups suspects et on ajoutera un captcha si besoin.
+2. ~~**Modération profil entreprise**~~ → **Pas de modération** au MVP. Validation automatique via API INSEE si dispo, sinon trust-by-default.
+3. ~~**Langue du copilote IA**~~ → **FR + EN** dès le MVP (détection langue utilisateur + switch possible).
+4. ~~**Prestataire paiement**~~ → **Stripe Connect** (choix acté) mais **pas intégré au MVP immédiat** (phase intermédiaire : factures manuelles puis intégration Stripe).
+5. ~~**Anti-bypass**~~ → **Phase 2**. Au MVP, pas de filtrage actif des échanges d'email dans le chat.

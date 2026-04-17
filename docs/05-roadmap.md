@@ -69,9 +69,18 @@
 
 ## Prochaine action
 
-Scope modules MVP validé. Onboarding PME v1 rédigé (`docs/flows/onboarding-pme.md`).
-À traiter ensuite :
-- Validation de l'onboarding PME par l'utilisateur + trancher les 5 questions ouvertes du flow.
-- Définir les autres flows clés (onboarding talent, dépôt besoin détaillé, exécution mission, feedback).
-- Chiffrer les indicateurs de succès MVP (cibles PME, GMV, NPS).
-- Passer à l'étape 3 (Architecture technique) → création `docs/tech/01-architecture.md` en anglais.
+Scope MVP validé, onboarding PME v1 + 5 questions tranchées, **doc `08-environnement-prestataire.md` créé (cœur produit)**.
+
+Chantier actif : **constitution de l'environnement prestataire** (cockpit IA mission-aware). Priorité majeure.
+
+Prochains sous-chantiers immédiats :
+1. Prioriser les **5-10 premiers skills** à construire pour le MVP (tableau skill × domaine × persona).
+2. Spécifier **un skill pilote** de bout en bout (input, prompt système, outils, output, mesures).
+3. Décider la **stack LLM** (mono vs multi-LLM) et le coût cible par mission.
+4. Trancher les 8 questions ouvertes de `08-environnement-prestataire.md`.
+5. Maquetter le flow « acceptation mission → cockpit prêt ».
+
+Ensuite :
+- Onboarding talent (flow).
+- Chiffrage KPIs MVP.
+- Architecture technique (`docs/tech/01-architecture.md`, anglais).

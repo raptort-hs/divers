@@ -5,6 +5,41 @@ Les entrées les plus récentes en haut.
 
 ---
 
+## 2026-04-16 — Environnement prestataire (cœur produit) — v1
+
+**Fait**
+- 5 questions ouvertes de l'onboarding PME tranchées : pas de captcha, pas de modération, copilote FR+EN, Stripe Connect (sans intégration immédiate), anti-bypass en Phase 2.
+- Création de `docs/08-environnement-prestataire.md` : doc majeure couvrant le cœur produit Symbiose.
+  - Problème résolu (freelance part de zéro à chaque mission).
+  - Promesse : environnement auto-constitué, adapté mission + complémentaire au profil.
+  - 4 composants : copilote IA mission-aware, skill set activé, workspace, plan d'action auto.
+  - Processus de constitution (flow schématisé).
+  - 3 exemples concrets par persona (Léa junior UX, Marc senior dev, Amine étudiant).
+  - 7 principes de conception (profile-first, complémentarité, transparence, évolutif, ownership, modulaire, mesurable).
+  - Pile technique pressentie (LLM + agents skills + vectorisation profil + workspace SPA).
+  - Plan par phases (MVP cockpit essentiel → P2 complémentarité profonde → P3 marketplace skills).
+  - 8 questions ouvertes (granularité skills, LLM mono/multi, gouvernance, confidentialité, facturation IA, interface, plan d'action partagé client, fallback).
+  - 5 prochaines actions opérationnelles.
+- Renumérotation : pitch investisseurs passe de 08 à 09 (placeholder seulement, rien d'écrit).
+- Mise à jour README, CLAUDE.md, roadmap avec ce nouveau chantier prioritaire.
+
+**Décisions prises**
+- Ce chantier est désigné **majeur** par l'utilisateur : c'est LE cœur produit de Symbiose.
+- Structure : un doc dédié numéroté 08 (plutôt que dilué dans module 4 ou un flow).
+- Les 5 réponses onboarding PME : captcha inutile au MVP, pas de modération, copilote FR+EN, Stripe Connect validé mais intégré plus tard, anti-bypass Phase 2.
+
+**Reste à faire**
+- Trancher les 8 questions ouvertes de `08-environnement-prestataire.md`.
+- Prioriser les 5-10 premiers skills MVP.
+- Spécifier un skill pilote de bout en bout.
+- Décider la stack LLM.
+- Itérer le plan auto sur missions fictives.
+
+**Prochaine action**
+Demander à l'utilisateur sur quel axe attaquer en premier (questions ouvertes, priorisation skills, skill pilote, ou choix LLM).
+
+---
+
 ## 2026-04-16 — Onboarding PME v1 (flow détaillé)
 
 **Fait**
