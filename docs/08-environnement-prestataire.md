@@ -27,30 +27,39 @@ Quand un prestataire accepte une mission, **Symbiose constitue automatiquement u
 
 **En une phrase** : *« Chaque mission ouvre un cockpit composé spécifiquement pour toi, à partir de tout ce que l'écosystème mondial a de meilleur. »*
 
-## 3. La force différenciante : le matching profil × mission × skills
+## 3. La force différenciante : un agent spécialisé fait le matching
 
-C'est **LE cœur technique et stratégique** de Symbiose. Trois entités sont vectorisées et confrontées :
+C'est **LE cœur technique et stratégique** de Symbiose.
+**Décision architecturale (2026-04-16)** : le matching n'est pas un algorithme classique (embeddings + règles + re-ranking). C'est un **agent IA spécialisé** — autonome, capable de raisonner sur le contexte, d'utiliser des outils (lecture registry skills, profil, mission), et de composer dynamiquement l'environnement.
 
 ```
-     Profil talent          Brief mission           Skills disponibles
- (compétences, niveau,   (domaine, livrables,      (ce que chaque skill
-   valeurs, historique)    deadline, contexte)       sait faire, pour qui)
-          \                     |                         /
-           \                    |                        /
-            \                   ▼                       /
-             \       ┌─────────────────────┐           /
-              ─────▶ │   Moteur matching   │ ◀────────
-                     │  (embeddings +      │
-                     │   règles métier)    │
-                     └──────────┬──────────┘
-                                ▼
-                  Environnement de mission composé :
+   Profil talent           Brief mission          Registry skills
+ (profil vectorisé +      (structuré par         (natifs + communautaires
+  historique narré)        un agent parseur)       + externes importés)
+        \                       |                        /
+         \                      |                       /
+          \                     ▼                      /
+           \           ┌────────────────────┐         /
+            ──────────▶│  Matching Agent    │◀───────
+                       │  (spécialisé,      │
+                       │   outillé, avec    │
+                       │   mémoire)         │
+                       └──────────┬─────────┘
+                                  ▼
+                  Environnement composé :
                   - Skills activés (forces + compléments)
-                  - Plan d'action
-                  - Persona IA adaptée
+                  - Plan d'action généré
+                  - Persona copilote adaptée
+                  - Justifications transparentes au talent
 ```
 
-**La valeur = la précision du matching.** Plus le moteur est bon à détecter le gap entre le profil et les exigences de la mission, plus la compensation est fine, plus le talent est efficace.
+**Pourquoi un agent plutôt qu'un algo** :
+- **Contexte riche** : un agent peut intégrer des signaux faibles (valeurs du talent, historique de feedback client, saisonnalité) qu'un scoring fixe ne capture pas.
+- **Raisonnement** : il peut expliquer pourquoi il active tel skill — transparence.
+- **Adaptabilité** : il s'améliore avec de nouveaux skills / nouveaux domaines sans réécrire de règles.
+- **Extensibilité** : l'agent peut solliciter d'autres agents (ex : agent « Analyse de brief » si le brief est ambigu).
+
+**La plateforme entière est pensée AI-native, agent-native** — Symbiose = **orchestration d'agents spécialisés** (matching, parsing brief, génération plan, copilote de mission, import skill, review sécurité...), pas une appli web qui appelle ponctuellement de l'IA.
 
 ## 4. Composants de l'environnement
 
@@ -205,25 +214,26 @@ cost_estimate_tokens: 8000
 
 ## 8. Principes de conception
 
-1. **Écosystème ouvert par défaut** : tout skill doit pouvoir être créé, partagé, importé. Format standard documenté.
-2. **Profile-first, mission-second** : on adapte l'écosystème au talent, pas l'inverse.
-3. **Complémentarité, pas substitution** : l'IA comble les gaps, le talent reste aux commandes.
-4. **Transparence** : le talent voit quels skills sont activés, d'où ils viennent, pourquoi. Il peut en désactiver/remplacer.
-5. **Gouvernance par l'usage** : la qualité émerge de la notation + monitoring runtime, pas d'un comité fermé.
-6. **Ownership** : le livrable reste celui du talent.
-7. **Modulaire & versionné** : chaque skill est atomique, versionné, remplaçable sans casser la mission.
-8. **Incentivisé** : créer un skill utilisé par d'autres rapporte des tokens au créateur (aligne qualité).
-9. **Safe by default** : sandboxing, review prompt, no-data-leak, no-training-on-client-data.
+1. **AI-native, agent-native** : la plateforme est **une orchestration d'agents spécialisés**, pas une app qui appelle ponctuellement une IA. Chaque fonction centrale (matching, parsing brief, plan d'action, review, copilote) est un agent.
+2. **Écosystème ouvert par défaut** : tout skill doit pouvoir être créé, partagé, importé. Format standard documenté.
+3. **Profile-first, mission-second** : on adapte l'écosystème au talent, pas l'inverse.
+4. **Complémentarité, pas substitution** : l'IA comble les gaps, le talent reste aux commandes.
+5. **Transparence** : le talent voit quels skills sont activés, **pourquoi l'agent les a choisis**, et peut en désactiver/remplacer.
+6. **Gouvernance par l'usage** : la qualité émerge de la notation + monitoring runtime, pas d'un comité fermé.
+7. **Ownership** : le livrable reste celui du talent.
+8. **Modulaire & versionné** : skills atomiques, versionnés, remplaçables sans casser la mission.
+9. **Incentivisé** : créer un skill utilisé par d'autres rapporte des tokens au créateur.
+10. **Safe by default** : sandboxing, review prompt, no-data-leak, no-training-on-client-data.
 
-## 9. Pile technique pressentie (à formaliser en `docs/tech/`)
+## 9. Pile technique pressentie (formalisée en `docs/tech/`)
 
-- **Moteur IA** : multi-LLM orchestré (à décider : Claude pour raisonnement, GPT ou Mistral pour créa, local pour coût bas).
-- **Skills = agents packagés** : manifest YAML + prompt système + outils MCP + mémoire.
-- **Registry skills** : base de données + index vectoriel (pg + pgvector ou Pinecone/Weaviate).
-- **Moteur matching** : embeddings profil + mission + skills, scoring règles métier, re-ranking.
-- **Sandboxing** : exécution skills externes en environnement isolé.
-- **Workspace** : SPA React/Next, realtime via WebSockets.
-- **Sécurité** : isolation par mission, chiffrement, opt-out entraînement.
+- **Plateforme = orchestration d'agents spécialisés** (cf. `docs/tech/01-agent-architecture.md`).
+- **Agents clés** (MVP) : Brief-Parser Agent, Matching Agent, Plan-Builder Agent, Mission Copilot Agent, Skill-Importer Agent, Safety-Review Agent.
+- **Moteur IA** : Claude (Anthropic) en priorité (raisonnement + tool use + longs contextes). Multi-LLM possible en Phase 2 si coût/usage le justifie.
+- **Skills** : manifest YAML + prompt système + outils MCP + mémoire. Chaque skill peut être invoqué par n'importe quel agent.
+- **Registry skills** : base de données + index vectoriel (pg + pgvector ou équivalent) pour la recherche sémantique rapide par le Matching Agent.
+- **Workspace** : SPA React/Next, realtime via WebSockets, streaming UI pour visualiser le raisonnement des agents.
+- **Sécurité** : isolation par mission, chiffrement, opt-out entraînement, sandboxing des skills externes.
 
 ## 10. Plan par phases
 

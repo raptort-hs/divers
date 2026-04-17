@@ -69,20 +69,22 @@
 
 ## Prochaine action
 
-**Orientation stratégique v2 (2026-04-16) : l'environnement prestataire devient un écosystème ouvert de skills.**
-Skills créables par Symbiose, par les talents, **importables depuis internet** (Claude Skills, MCP, GitHub). Le cœur = **moteur de matching profil × mission × skills**.
+**Orientation architecturale v3 (2026-04-16) : Symbiose est AI-native et agent-native.**
+Le matching profil × mission × skills est opéré par un **agent spécialisé** (Matching Agent), pas par un algorithme classique. La plateforme est une orchestration d'agents spécialisés (Brief-Parser, Matching, Plan-Builder, Mission Copilot, Skill-Importer, Safety-Review).
 
-Doc `08-environnement-prestataire.md` entièrement révisé (v2) avec :
-- Matching triadique (profil / mission / skills) comme différenciateur.
-- 3 sources skills : natifs, communautaires, externes.
-- Gouvernance par l'usage + monétisation créateurs en tokens.
-- Format standard skill pressenti (YAML manifest).
+Doc `docs/tech/01-agent-architecture.md` créé (EN) avec :
+- Catalogue des 6 agents MVP.
+- Deep-dive sur le Matching Agent (inputs, tools, output contract, system prompt sketch, metrics).
+- Proposition Claude Agent SDK comme orchestrateur.
+- 8 questions ouvertes technique.
+
+Doc `08-environnement-prestataire.md` mise à jour (§3, §8, §9) pour refléter l'approche agent-native.
 
 Prochains sous-chantiers prioritaires :
-1. **Formaliser le format standard skill** → `docs/tech/02-skill-format.md` (anglais).
-2. **Spécifier le moteur de matching** → `docs/tech/03-matching-engine.md`.
-3. Prioriser les 5-10 skills natifs MVP.
-4. Spécifier un skill pilote bout-en-bout.
-5. Trancher les 10 questions ouvertes de `08`.
+1. Valider le choix Claude Agent SDK vs alternatives.
+2. **Skill manifest v1** → `docs/tech/02-skill-format.md`.
+3. **Matching Agent spec complète** → `docs/tech/03-matching-agent.md`.
+4. Prototype end-to-end thin slice (1 skill + 3 agents) pour valider la faisabilité.
+5. Prioriser les 5-10 skills natifs MVP.
 
-Ensuite : onboarding talent, KPIs MVP, architecture technique globale.
+Ensuite : onboarding talent, KPIs MVP, architecture globale.

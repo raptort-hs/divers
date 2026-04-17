@@ -15,13 +15,16 @@ Toute la mémoire du projet vit dans `docs/`. Chaque avancée est tracée et mis
 - [`docs/05-roadmap.md`](docs/05-roadmap.md) — Phases & priorités.
 - [`docs/06-journal.md`](docs/06-journal.md) — Historique daté des décisions et avancées.
 - [`docs/07-personas.md`](docs/07-personas.md) — Personas & parcours utilisateurs.
-- [`docs/08-environnement-prestataire.md`](docs/08-environnement-prestataire.md) — **Cœur produit** : cockpit IA mission-aware, skills complémentaires, plan auto.
+- [`docs/08-environnement-prestataire.md`](docs/08-environnement-prestataire.md) — **Cœur produit** : écosystème ouvert de skills, matching agent-native.
 - [`docs/flows/`](docs/flows/) — Parcours utilisateurs détaillés.
   - [`onboarding-pme.md`](docs/flows/onboarding-pme.md) — Tunnel onboarding PME (cible MVP).
+- [`docs/tech/`](docs/tech/) — Documentation technique (EN).
+  - [`01-agent-architecture.md`](docs/tech/01-agent-architecture.md) — Agent-native orchestration + Matching Agent deep dive.
 
 À venir :
 - `docs/09-pitch-investisseurs.md` — One-pager & deck.
-- `docs/tech/` — Documentation technique (en anglais).
+- `docs/tech/02-skill-format.md` — Skill manifest standard (v1).
+- `docs/tech/03-matching-agent.md` — Matching Agent specification.
 
 ## Règle d'or
 

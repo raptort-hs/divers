@@ -5,6 +5,40 @@ Les entrées les plus récentes en haut.
 
 ---
 
+## 2026-04-16 — Orientation AI-native, agent-native : Matching Agent
+
+**Fait**
+- Décision architecturale majeure validée : **Symbiose est AI-native et agent-native**. Le matching est fait par un **agent spécialisé** (Matching Agent), pas un algorithme classique (embeddings + règles).
+- Mise à jour `docs/08-environnement-prestataire.md` :
+  - §3 (différenciation) réécrit autour du Matching Agent : raisonnement contextuel, justifications transparentes, sollicitation d'autres agents, extensibilité.
+  - §8 principes enrichis : ajout du principe n°1 « AI-native, agent-native ».
+  - §9 pile technique alignée : plateforme = orchestration d'agents spécialisés.
+- Création de `docs/tech/` (sous-dossier technique en anglais) et première doc `01-agent-architecture.md` :
+  - Philosophie agent-native.
+  - Catalogue des 6 agents MVP (Brief-Parser, Matching, Plan-Builder, Mission Copilot, Skill-Importer, Safety-Review).
+  - Deep-dive Matching Agent : inputs, tools exposés, output contract JSON, system prompt esquissé, 6 métriques.
+  - Proposition orchestration = **Claude Agent SDK** (alternative LangGraph / custom).
+  - Data flow de constitution d'une mission.
+  - 8 questions ouvertes techniques.
+- Mise à jour `README.md`, `CLAUDE.md` (arborescence avec `docs/tech/`), roadmap.
+
+**Décisions prises**
+- Plateforme = **orchestration d'agents spécialisés** (pas une app avec de l'IA ponctuelle).
+- Le matching n'est pas un algo : c'est un **agent autonome** outillé.
+- Reco stack orchestration : **Claude Agent SDK** (à valider).
+
+**Reste à faire**
+- Validation du choix Claude Agent SDK.
+- Skill manifest format v1 (`docs/tech/02-skill-format.md`).
+- Matching Agent spec complète (`docs/tech/03-matching-agent.md`).
+- Prototype thin slice (1 skill + 3 agents).
+- Trancher les 8 questions ouvertes tech + les 10 de doc 08.
+
+**Prochaine action**
+Demander à l'utilisateur quel sous-chantier attaquer : validation Claude Agent SDK, skill manifest, ou spec Matching Agent complète.
+
+---
+
 ## 2026-04-16 — Environnement prestataire v2 : écosystème ouvert de skills
 
 **Fait**
